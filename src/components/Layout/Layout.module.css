@@ -1,0 +1,68 @@
+/* LAYOUT.MODULE.CSS — Plantilla principal de la aplicación */
+
+.layout {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    /* Fondo base */
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(79, 153, 144, 0.45),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(229, 111, 81, 0.30),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 85%,
+            rgba(244, 213, 141, 0.35),
+            transparent 32%
+        ),
+        var(--color-bg-main);
+
+    background-attachment: fixed;
+}
+
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+.mainContainer {
+    position: relative;
+
+    flex: 1;
+
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .mainContainer {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .mainContainer {
+        padding: var(--spacing-md);
+    }
+}

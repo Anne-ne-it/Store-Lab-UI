@@ -1,0 +1,174 @@
+/* INDEX.CSS — Estilos principales para la aplicación */
+
+
+/* =========================
+   FONT FAMILIES
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700;900&family=Space+Mono:wght@700&display=swap');
+
+
+/* =========================
+   ROOT Y VARIABLES
+========================= */
+
+@import url('./variables.css');
+
+
+/* =========================
+   CSS RESET
+========================= */
+
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+}
+
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(79, 153, 144, 0.45),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(229, 111, 81, 0.35),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(244, 213, 141, 0.45),
+      transparent 35%
+    ),
+    var(--color-bg-main);
+
+  background-attachment: fixed;
+
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* =========================
+   SELECCIÓN DE TEXTO
+========================= */
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-titles);
+  font-weight: var(--weight-black);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+
+/* =========================
+   ENLACES
+========================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+button {
+  font-family: var(--font-titles);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+
+/* =========================
+   IMÁGENES
+========================= */
+
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================
+   ELEMENTOS DE FORMULARIO
+========================= */
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+
+/* =========================
+   ACCESIBILIDAD
+========================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}

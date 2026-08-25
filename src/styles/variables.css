@@ -1,0 +1,116 @@
+/* ROOT STORE LAB — Surf & Skate / Glassmorphism */
+
+:root {
+
+  /* =========================
+     COLORES
+  ========================= */
+
+  /* Fondos */
+  --color-bg-main: #DDEDEA;
+  --color-bg-secondary: #BFD9D5;
+  --color-bg-dark: #123B3A;
+
+  /* Texto */
+  --color-text-main: #102322;
+  --color-text-secondary: #526765;
+  --color-text-light: #F7FBFA;
+
+  /* =========================
+     OCÉANO
+  ========================= */
+
+  --color-primary: #176B63;
+  --color-primary-hover: #12564F;
+  --color-primary-light: #4F9990;
+
+  /* =========================
+     CORAL / ATARDECER
+  ========================= */
+
+  --color-secondary: #E56F51;
+  --color-secondary-hover: #CF5A3E;
+  --color-secondary-light: #F39A7F;
+
+  /* =========================
+     ARENA
+  ========================= */
+
+  --color-accent: #F4D58D;
+  --color-accent-hover: #EBC56E;
+  --color-accent-light: #F9E8B8;
+
+  /* =========================
+     GLASS
+  ========================= */
+
+  --glass-bg: rgba(255, 255, 255, 0.28);
+  --glass-bg-strong: rgba(255, 255, 255, 0.45);
+  --glass-bg-dark: rgba(18, 59, 58, 0.35);
+
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-border-dark: rgba(23, 107, 99, 0.25);
+
+  --glass-blur: 16px;
+
+  /* =========================
+     BORDES
+  ========================= */
+
+  --color-border-light: rgba(255, 255, 255, 0.5);
+  --color-border-dark: rgba(23, 107, 99, 0.35);
+
+  /* =========================
+     TIPOGRAFÍAS
+  ========================= */
+
+  --font-titles: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Space Mono', monospace;
+
+  /* =========================
+     PESOS
+  ========================= */
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  /* =========================
+     BORDES
+  ========================= */
+
+  --radius-none: 0px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* =========================
+     SOMBRAS
+  ========================= */
+
+  --shadow-sm:
+    0 4px 12px rgba(16, 35, 34, 0.08);
+
+  --shadow-md:
+    0 10px 30px rgba(16, 35, 34, 0.12);
+
+  --shadow-lg:
+    0 20px 50px rgba(16, 35, 34, 0.16);
+
+  --shadow-glass:
+    0 8px 32px rgba(16, 35, 34, 0.12);
+
+  /* =========================
+     ESPACIADO
+  ========================= */
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+}

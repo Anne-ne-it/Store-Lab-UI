@@ -1,0 +1,336 @@
+/* PRODUCT DETAIL PAGE
+   STORE LAB Surf & Skate / Glassmorphism
+*/
+
+
+/* =========================
+   PAGE
+========================= */
+
+.ProductDetailPage {
+    width: 100%;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
+
+.product {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+    gap: var(--spacing-xl);
+
+    margin-bottom: var(--spacing-xl);
+}
+
+
+/* =========================
+   IMAGE CONTAINER
+========================= */
+
+.imageContainer {
+    position: relative;
+
+    min-height: 500px;
+
+    overflow: hidden;
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-glass);
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.productImage {
+    width: 100%;
+    height: 100%;
+
+    min-height: 500px;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+
+.imageContainer:hover .productImage {
+    transform: scale(1.03);
+}
+
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: var(--spacing-xl);
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-glass);
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.productCategory {
+    display: inline-flex;
+
+    margin-bottom: var(--spacing-sm);
+
+    padding: 6px 12px;
+
+    font-family: var(--font-accent);
+    font-size: 10px;
+    font-weight: var(--weight-bold);
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+
+    background: rgba(23, 107, 99, 0.10);
+
+    border: 1px solid var(--glass-border-dark);
+    border-radius: var(--radius-full);
+}
+
+
+/* =========================
+   NAME
+========================= */
+
+.productName {
+    margin: 0 0 var(--spacing-md);
+
+    font-family: var(--font-titles);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: var(--weight-black);
+
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+
+    color: var(--color-text-main);
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.productDescription {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+
+    font-family: var(--font-body);
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: var(--color-text-secondary);
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.productPrice {
+    margin: 0 0 var(--spacing-lg);
+
+    font-family: var(--font-accent);
+    font-size: 28px;
+    font-weight: var(--weight-bold);
+
+    color: var(--color-primary);
+}
+
+
+/* =========================
+   BUY BUTTON
+========================= */
+
+.buyButton {
+    width: 100%;
+
+    padding: 14px 24px;
+
+    font-family: var(--font-titles);
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+
+    color: var(--color-text-light);
+
+    background: var(--color-secondary);
+
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-full);
+
+    box-shadow:
+        0 8px 20px rgba(229, 111, 81, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.buyButton:hover {
+    background: var(--color-secondary-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(229, 111, 81, 0.28);
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    min-height: 60vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--spacing-xl);
+
+    text-align: center;
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-glass);
+}
+
+
+.errorCode {
+    margin: 0;
+
+    font-family: var(--font-titles);
+    font-size: clamp(80px, 15vw, 160px);
+    font-weight: var(--weight-black);
+
+    line-height: 0.8;
+
+    color: var(--color-primary);
+}
+
+
+.errorMessage {
+    margin-top: var(--spacing-md);
+
+    font-family: var(--font-body);
+    font-size: 18px;
+
+    color: var(--color-text-secondary);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .product {
+        grid-template-columns: 1fr;
+
+        gap: var(--spacing-lg);
+    }
+
+
+    .imageContainer {
+        min-height: 420px;
+    }
+
+
+    .productImage {
+        min-height: 420px;
+    }
+
+
+    .productInfo {
+        padding: var(--spacing-lg);
+    }
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 600px) {
+
+    .imageContainer {
+        min-height: 320px;
+
+        border-radius: var(--radius-md);
+    }
+
+
+    .productImage {
+        min-height: 320px;
+    }
+
+
+    .productInfo {
+        padding: var(--spacing-md);
+
+        border-radius: var(--radius-md);
+    }
+
+
+    .productName {
+        font-size: 38px;
+    }
+
+
+    .productDescription {
+        font-size: 14px;
+    }
+
+
+    .productPrice {
+        font-size: 24px;
+    }
+}

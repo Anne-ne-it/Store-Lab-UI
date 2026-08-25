@@ -1,0 +1,203 @@
+/* PRODUCTS PAGE
+   STORE LAB Surf & Skate / Glassmorphism
+*/
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    width: 100%;
+
+    padding-bottom: var(--spacing-xl);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: var(--spacing-xl);
+
+    padding: var(--spacing-xl);
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-glass);
+
+    overflow: hidden;
+}
+
+
+/* Decoración */
+
+.header::after {
+    content: '';
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    top: -120px;
+    right: -60px;
+
+    background: var(--color-accent);
+
+    opacity: 0.20;
+
+    border-radius: var(--radius-full);
+
+    filter: blur(50px);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   EYEBROW
+========================= */
+
+.eyebrow {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: var(--spacing-sm);
+
+    font-family: var(--font-accent);
+    font-size: 10px;
+    font-weight: var(--weight-bold);
+
+    letter-spacing: 1.5px;
+
+    color: var(--color-primary);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.header h1 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    font-family: var(--font-titles);
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: var(--weight-black);
+
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+
+    color: var(--color-text-main);
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description {
+    position: relative;
+    z-index: 1;
+
+    max-width: 650px;
+
+    margin-top: var(--spacing-md);
+
+    font-family: var(--font-body);
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: var(--color-text-secondary);
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    width: 100%;
+
+    padding: var(--spacing-lg);
+
+    text-align: center;
+
+    font-family: var(--font-body);
+    font-size: 14px;
+
+    color: var(--color-text-secondary);
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    width: 100%;
+
+    padding: var(--spacing-lg);
+
+    text-align: center;
+
+    font-family: var(--font-body);
+    font-size: 14px;
+
+    color: var(--color-secondary);
+
+    background: rgba(229, 111, 81, 0.08);
+
+    border: 1px solid rgba(229, 111, 81, 0.20);
+    border-radius: var(--radius-md);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: var(--spacing-lg);
+
+        border-radius: var(--radius-md);
+    }
+
+
+    .header h1 {
+        font-size: 40px;
+    }
+
+
+    .description {
+        font-size: 14px;
+    }
+}
