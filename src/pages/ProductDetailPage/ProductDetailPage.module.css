@@ -267,6 +267,95 @@
 
 
 /* =========================
+   ACTIONS
+========================= */
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+.actions .buyButton {
+    width: auto;
+    flex: 1;
+    margin: 0;
+}
+
+
+/* =========================
+   WISHLIST BUTTON
+========================= */
+
+.wishlistButton {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+
+    width: 52px;
+    height: 52px;
+    padding: 0;
+
+    font-family: var(--font-body);
+    font-size: 25px;
+    line-height: 1;
+
+    color: var(--color-primary);
+    background: var(--glass-bg-strong);
+
+    border: 1px solid var(--glass-border-dark);
+    border-radius: var(--radius-full);
+
+    box-shadow: var(--shadow-sm);
+
+    cursor: pointer;
+
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.wishlistButton:hover {
+    color: var(--color-text-light);
+    background: var(--color-primary);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.wishlistButton:active {
+    transform: scale(0.95);
+}
+
+.wishlistButton:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.wishlistButtonActive {
+    color: var(--color-text-light);
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+
+    box-shadow:
+        0 8px 20px rgba(229, 111, 81, 0.24);
+}
+
+.wishlistButtonActive:hover {
+    background: var(--color-secondary-hover);
+}
+
+
+/* =========================
    TABLET
 ========================= */
 
@@ -332,5 +421,16 @@
 
     .productPrice {
         font-size: 24px;
+    }
+
+
+    .actions {
+        gap: var(--spacing-sm);
+    }
+
+    .wishlistButton {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
     }
 }

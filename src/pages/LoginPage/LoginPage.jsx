@@ -1,19 +1,19 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import FormInput from "../../components/FormInput/FormInput.jsx"
-import { clearError, register } from "../../store/authSlice.js"
-import styles from "./RegistrerPage.module.css"
+import { clearError, login } from "../../store/authSlice.js"
+import styles from "./LoginPage.module.css"
 
-function RegistrerPage() {
+function LoginPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const { loading, error } = useSelector((state) => state.auth)
 
   const [form, setForm] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
   })
 
   const [errors, setErrors] = useState({})
@@ -31,7 +31,9 @@ function RegistrerPage() {
       [name]: "",
     }))
 
-    if (error) dispatch(clearError())
+    if (error) {
+      dispatch(clearError())
+    }
   }
 
   const validate = () => {
@@ -43,14 +45,6 @@ function RegistrerPage() {
 
     if (!form.password.trim()) {
       newErrors.password = "La contraseña es obligatoria"
-    } else if (form.password.length < 6) {
-      newErrors.password = "La contraseña debe tener al menos 6 caracteres"
-    }
-
-    if (!form.confirmPassword.trim()) {
-      newErrors.confirmPassword = "Debes confirmar la contraseña"
-    } else if (form.password !== form.confirmPassword) {
-      newErrors.confirmPassword = "Las contraseñas no coinciden"
     }
 
     setErrors(newErrors)
@@ -63,14 +57,8 @@ function RegistrerPage() {
     if (!validate()) return
 
     try {
-      await dispatch(
-        register({
-          email: form.email,
-          password: form.password,
-        })
-      ).unwrap()
-
-      navigate("/", { replace: true })
+      await dispatch(login(form)).unwrap()
+      navigate(location.state?.from?.pathname || "/", { replace: true })
     } catch {
       // El mensaje se muestra desde Redux.
     }
@@ -79,7 +67,7 @@ function RegistrerPage() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <h1>Crear cuenta</h1>
+        <h1>Iniciar sesión</h1>
 
         {error && <p className={styles.serverError}>{error}</p>}
 
@@ -104,31 +92,21 @@ function RegistrerPage() {
             error={errors.password}
           />
 
-          <FormInput
-            label="Confirmar contraseña"
-            type="password"
-            name="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            placeholder="Repite tu contraseña"
-            error={errors.confirmPassword}
-          />
-
           <button
             type="submit"
             className={styles.button}
             disabled={loading}
           >
-            {loading ? "Creando..." : "Crear cuenta"}
+            {loading ? "Entrando..." : "Iniciar sesión"}
           </button>
         </form>
 
         <p>
-          ¿Ya tienes cuenta? <Link to="/login">Iniciar sesión</Link>
+          ¿No tienes cuenta? <Link to="/register">Crear cuenta</Link>
         </p>
       </div>
     </main>
   )
 }
 
-export default RegistrerPage
+export default LoginPage

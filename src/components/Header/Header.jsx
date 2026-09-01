@@ -1,16 +1,23 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Search, User, ShoppingBag, Menu, X, ChevronDown } from 'lucide-react';
-import styles from './Header.module.css';
+import { useState } from "react"
+import { NavLink } from "react-router-dom"
+import { User, ShoppingBag, Menu, X, ChevronDown } from "lucide-react"
+import { useSelector } from "react-redux"
+import styles from "./Header.module.css"
 
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const token = useSelector((state) => state.auth.token)
+  const cartItems = useSelector((state) => state.cart.items)
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  )
+
+  const toggleMenu = () => setIsMenuOpen((open) => !open)
 
   return (
     <header className={styles.header}>
-      {/* 1. LOGO */}
       <NavLink to="/" className={styles.brand}>
         <div className={styles.logoText}>
           <span className={styles.title}>STORELAB UI</span>
@@ -18,75 +25,58 @@ function Header() {
         </div>
       </NavLink>
 
-      {/* 2. NAVEGACIÓN PRINCIPAL */}
-      <nav className={`${styles.navHeader} ${isMenuOpen ? styles.navActive : ''}`}>
-        <NavLink 
-          to="/" 
+      <nav className={`${styles.navHeader} ${isMenuOpen ? styles.navActive : ""}`}>
+        <NavLink
+          to="/"
           end
           className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
           onClick={() => setIsMenuOpen(false)}
         >
           INICIO
         </NavLink>
-        
-        <div className={styles.dropdown}>
-          <NavLink 
-            to="/surf" 
-            className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            SURF <ChevronDown className={styles.chevronIcon} />
-          </NavLink>
-        </div>
 
-        <div className={styles.dropdown}>
-          <NavLink 
-            to="/skate" 
-            className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            SKATE <ChevronDown className={styles.chevronIcon} />
-          </NavLink>
-        </div>
-
-        <div className={styles.dropdown}>
-          <NavLink 
-            to="/neoprenos" 
-            className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            NEOPRENOS <ChevronDown className={styles.chevronIcon} />
-          </NavLink>
-        </div>
-
-        <NavLink 
-          to="/products" 
-          className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          CATÁLOGO
-        </NavLink>
+        {[
+          ["SURF", "Surf"],
+          ["SKATE", "Skate"],
+          ["NEOPRENOS", "Neoprenos"],
+          ["ACCESORIOS", "Accesorios"],
+        ].map(([label, category]) => (
+          <div className={styles.dropdown} key={category}>
+            <NavLink
+              to={`/products?category=${encodeURIComponent(category)}`}
+              className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {label} <ChevronDown className={styles.chevronIcon} />
+            </NavLink>
+          </div>
+        ))}
       </nav>
 
-      {/* 3. ICONOS DE ACCIÓN */}
       <div className={styles.actions}>
-        <button className={styles.iconBtn} aria-label="Buscar">
-          <Search className={styles.actionIcon} />
-        </button>
-        <button className={styles.iconBtn} aria-label="Cuenta">
+        <NavLink
+          to={token ? "/profile" : "/login"}
+          className={styles.iconBtn}
+          aria-label="Cuenta"
+        >
           <User className={styles.actionIcon} />
-        </button>
+        </NavLink>
+
         <NavLink to="/cart" className={styles.cartBtn} aria-label="Carrito">
           <ShoppingBag className={styles.actionIcon} />
-          <span className={styles.cartBadge}>0</span>
+          {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
         </NavLink>
-        
+
         <button className={styles.hamburger} onClick={toggleMenu} aria-label="Menú">
-          {isMenuOpen ? <X className={styles.actionIcon} /> : <Menu className={styles.actionIcon} />}
+          {isMenuOpen ? (
+            <X className={styles.actionIcon} />
+          ) : (
+            <Menu className={styles.actionIcon} />
+          )}
         </button>
       </div>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

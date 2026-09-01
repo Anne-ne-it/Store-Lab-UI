@@ -313,7 +313,7 @@
     min-height: 100px;
 
     padding: var(--spacing-md);
-
+margin-top: var(--spacing-md);
     background: var(--glass-bg);
 
     backdrop-filter: blur(var(--glass-blur));

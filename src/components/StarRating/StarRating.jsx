@@ -1,10 +1,7 @@
 import styles from "./StarRating.module.css";
 
 function StarRating({ rating = 0, maxRating = 5, showValue = false }) {
-  const numericRating = Math.min(
-    Math.max(Number(rating) || 0, 0),
-    maxRating
-  );
+  const numericRating = Math.min( Math.max(Number(rating) || 0, 0), maxRating );
 
   return (
     <div
@@ -19,9 +16,7 @@ function StarRating({ rating = 0, maxRating = 5, showValue = false }) {
             !isFull && starNumber - 0.5 <= numericRating;
 
           return (
-            <span
-              key={starNumber}
-              className={`${styles.star} ${
+            <span key={starNumber} className={`${styles.star} ${
                 isFull
                   ? styles.full
                   : isHalf

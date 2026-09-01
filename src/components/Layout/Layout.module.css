@@ -2,13 +2,11 @@
 
 .layout {
     position: relative;
-
     min-height: 100vh;
-
     display: flex;
     flex-direction: column;
 
-    /* Fondo base */
+    /*FONDO BASE*/
     background:
         radial-gradient(
             circle at 10% 15%,
@@ -31,37 +29,25 @@
 }
 
 
-/* =========================
-   CONTENIDO PRINCIPAL
-========================= */
-
+/*CONTENIDO PRINCIPAL*/
 .mainContainer {
     position: relative;
-
     flex: 1;
-
     width: 100%;
     max-width: 1200px;
-
     margin: 0 auto;
     padding: var(--spacing-xl) var(--spacing-lg);
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
-
+/*RESPONSIVE*/
 @media (max-width: 768px) {
-
     .mainContainer {
         padding: var(--spacing-lg) var(--spacing-md);
     }
 }
 
-
 @media (max-width: 480px) {
-
     .mainContainer {
         padding: var(--spacing-md);
     }

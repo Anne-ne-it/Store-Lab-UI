@@ -37,3 +37,14 @@
   letter-spacing: 0.8px;
   text-transform: uppercase;
 }
+
+.serverError {
+  margin: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  color: var(--color-secondary-hover);
+  background: rgba(229, 111, 81, 0.1);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}

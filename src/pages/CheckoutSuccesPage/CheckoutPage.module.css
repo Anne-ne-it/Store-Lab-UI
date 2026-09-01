@@ -1,0 +1,170 @@
+/* CONTAINER */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.title {
+    font-family: var(--font-titles);
+    font-size: 32px;
+    font-weight: var(--weight-black);
+    text-transform: uppercase;
+    color: var(--color-text-main);
+    letter-spacing: -0.03em;
+}
+
+/* FORMULARIO GLASS */
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-glass);
+    overflow: hidden;
+}
+
+.subtitle {
+    font-family: var(--font-titles);
+    font-size: 20px;
+    font-weight: var(--weight-bold);
+    color: var(--color-text-main);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: var(--spacing-sm);
+}
+
+/* ITEM DEL RESUMEN */
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--glass-border-dark);
+}
+
+.itemName {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: var(--weight-bold);
+    color: var(--color-text-main);
+}
+
+.itemPrice {
+    font-family: var(--font-accent);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+/* TOTAL */
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-sm);
+    font-family: var(--font-titles);
+    font-size: 20px;
+    color: var(--color-text-main);
+}
+
+.totalPrice {
+    font-size: 26px;
+    font-weight: var(--weight-black);
+    color: var(--color-primary);
+}
+
+/* BOTÓN DE CONFIRMACIÓN */
+.submitBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: var(--spacing-md);
+    padding: 14px 20px;
+    font-family: var(--font-titles);
+    font-size: 14px;
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.submitBtn:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-2px);
+}
+
+.submitBtn:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 3px;
+}
+
+/* ESTADO VACÍO */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+}
+
+.emptyState p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-secondary);
+}
+
+.backLink {
+    display: inline-flex;
+    padding: 10px 20px;
+    font-family: var(--font-titles);
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.backLink:hover {
+    background: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .totalPrice {
+        font-size: 22px;
+    }
+}

@@ -1,61 +1,59 @@
-import { useProducts } from "../../hooks/useProducts";
-import ProductGrid from "../../components/ProductGrid/ProductGrid";
-import styles from "./ProductsPage.module.css";
+import { useSearchParams } from "react-router-dom"
+import { useProducts } from "../../hooks/UseProducts.js"
+import ProductGrid from "../../components/ProductGrid/ProductGrid.jsx"
+import styles from "./ProductsPage.module.css"
 
 function ProductsPage() {
-    const { products, loading, error } = useProducts();
+  const { products, loading, error } = useProducts()
+  const [searchParams] = useSearchParams()
+  const category = searchParams.get("category")
 
-    if (loading) {
-        return (
-            <main className={styles.page}>
-                <p className={styles.status}>
-                    Cargando productos...
-                </p>
-            </main>
-        );
-    }
+  const visibleProducts = category
+    ? products.filter(
+        (product) =>
+          product.category.toLowerCase() === category.toLowerCase() ||
+          (category.toLowerCase() === "accesorios" &&
+            product.category.toLowerCase().startsWith("accesorios"))
+      )
+    : products
 
-    if (error) {
-        return (
-            <main className={styles.page}>
-                <p className={styles.error}>
-                    {error}
-                </p>
-            </main>
-        );
-    }
-
+  if (loading) {
     return (
-        <main className={styles.page}>
+      <main className={styles.page}>
+        <p className={styles.status}>Cargando productos...</p>
+      </main>
+    )
+  }
 
-            <header className={styles.header}>
+  if (error) {
+    return (
+      <main className={styles.page}>
+        <p className={styles.error}>{error}</p>
+      </main>
+    )
+  }
 
-                <p className={styles.eyebrow}>
-                    STORE LAB · SURF &amp; SKATE
-                </p>
+  return (
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <p className={styles.eyebrow}>STORE LAB · SURF &amp; SKATE</p>
 
-                <h1>
-                    Nuestro catálogo
-                </h1>
+        <h1>
+          {category ? `Catálogo · ${category}` : "Nuestro catálogo"}
+        </h1>
 
-                <p className={styles.description}>
-                    Material, estilo y actitud para disfrutar
-                    de cada sesión dentro y fuera del agua.
-                </p>
+        <p className={styles.description}>
+          Material, estilo y actitud para disfrutar de cada sesión dentro y fuera del agua.
+        </p>
+      </header>
 
-            </header>
-
-
-            {products.length === 0 ? (
-                <p className={styles.status}>
-                    No hay productos disponibles.
-                </p>
-            ) : (
-                <ProductGrid products={products} />
-            )}
-
-        </main>
-    );
+      {visibleProducts.length === 0 ? (
+        <p className={styles.status}>No hay productos disponibles.</p>
+      ) : (
+        <ProductGrid products={visibleProducts} />
+      )}
+    </main>
+  )
 }
 
-export default ProductsPage;
+export default ProductsPage

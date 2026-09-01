@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom"
 import styles from "./ProductCard.module.css"
 import StarRating from "../StarRating/StarRating"
+import WishlistButton from "../WishlistButton/WishlistButton" // 1. Importar el botón
 
 function ProductCard({ product }) {
   return (
     <article className={styles.card}>
-      <span className={styles.category}>{product.category}</span>
+      {/* 2. Añadir el botón pasándole product.id */}
+      <WishlistButton productId={product.id} />
 
+      <span className={styles.category}>{product.category}</span>
       <h2 className={styles.title}>
         {product.name}
       </h2>

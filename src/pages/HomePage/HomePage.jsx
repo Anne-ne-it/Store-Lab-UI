@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useProducts } from "../../hooks/useProducts";
+import { useProducts } from "../../hooks/UseProducts";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import styles from "./HomePage.module.css";
 
@@ -8,20 +8,22 @@ function HomePage() {
     const { products, loading, error } = useProducts();
     const [search, setSearch] = useState("");
 
-    const visibleProducts = products.filter((product) => {
-        const searchText = search.toLowerCase();
+    /*Si el buscador está vacío o solo contiene espacios, se devuelve []*/
+    const visibleProducts = !search.trim()
+        ? []
+        : products.filter((product) => {
+            const searchText = search.toLowerCase().trim();
 
-        return (
-            product.name?.toLowerCase().includes(searchText) ||
-            product.title?.toLowerCase().includes(searchText) ||
-            product.category?.toLowerCase().includes(searchText)
-        );
-    });
+            return (
+                product.name?.toLowerCase().includes(searchText) ||
+                product.title?.toLowerCase().includes(searchText) ||
+                product.category?.toLowerCase().includes(searchText)
+            );
+        });
 
     return (
         <main className={styles.homePage}>
 
-            {/* HERO */}
             <section className={styles.hero}>
 
                 <div className={styles.heroOverlay}></div>
@@ -46,6 +48,7 @@ function HomePage() {
                     </p>
 
                     <div className={styles.heroButtons}>
+                        {/* Redirige al catálogo completo */}
                         <Link
                             to="/products"
                             className={styles.primaryButton}
@@ -53,8 +56,9 @@ function HomePage() {
                             Ver catálogo
                         </Link>
 
+                        {/* Redirige filtrando por novedad o seccion especial */}
                         <Link
-                            to="/products"
+                            to="/products?sort=newest"
                             className={styles.secondaryButton}
                         >
                             Novedades
@@ -65,8 +69,8 @@ function HomePage() {
 
             </section>
 
+            {/* BUSCADOR Y PRODUCTOS */}
             <section>
-                                {/* BUSCADOR */}
                 <div className={styles.searchBox}>
 
                     <label htmlFor="search">
@@ -83,7 +87,6 @@ function HomePage() {
 
                 </div>
 
-
                 {loading && (
                     <p className={styles.status}>
                         Cargando productos...
@@ -97,16 +100,27 @@ function HomePage() {
                 )}
 
                 {!loading && !error && (
-                    <ProductGrid products={visibleProducts} />
+                    <>
+                        {!search.trim() ? (
+                            <p className={styles.status}>
+                                Escribe en el buscador para ver los productos.
+                            </p>
+                        ) : visibleProducts.length === 0 ? (
+                            <p className={styles.status}>
+                                No se encontraron productos que coincidan con "{search}".
+                            </p>
+                        ) : (
+                            <ProductGrid products={visibleProducts} />
+                        )}
+                    </>
                 )}
             </section>
-
 
             {/* CATEGORÍAS */}
             <section className={styles.categories}>
 
-                <Link to="/products" className={styles.category}>
-                    <span className={styles.categoryIcon}>🏄</span>
+                <Link to="/products?category=surf" className={styles.category}>
+                    <span className={styles.categoryIcon}>◉</span>
 
                     <div>
                         <strong>Surf</strong>
@@ -114,8 +128,8 @@ function HomePage() {
                     </div>
                 </Link>
 
-                <Link to="/products" className={styles.category}>
-                    <span className={styles.categoryIcon}>🛹</span>
+                <Link to="/products?category=skate" className={styles.category}>
+                    <span className={styles.categoryIcon}>◉</span>
 
                     <div>
                         <strong>Skate</strong>
@@ -123,7 +137,7 @@ function HomePage() {
                     </div>
                 </Link>
 
-                <Link to="/products" className={styles.category}>
+                <Link to="/products?category=neoprenos" className={styles.category}>
                     <span className={styles.categoryIcon}>◉</span>
 
                     <div>
@@ -132,8 +146,8 @@ function HomePage() {
                     </div>
                 </Link>
 
-                <Link to="/products" className={styles.category}>
-                    <span className={styles.categoryIcon}>✦</span>
+                <Link to="/products?category=accesorios" className={styles.category}>
+                    <span className={styles.categoryIcon}>◉</span>
 
                     <div>
                         <strong>Accesorios</strong>

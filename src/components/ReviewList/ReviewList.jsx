@@ -27,7 +27,7 @@ function ReviewList({ productId }) {
     <section className={styles.section}>
       <div className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>CComunidad STORE LAB</p>
+          <p className={styles.eyebrow}>Comunidad STORE LAB</p>
           <h2 className={styles.title}>Opiniones de la comunidad</h2>
         </div>
 

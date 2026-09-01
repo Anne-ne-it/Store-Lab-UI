@@ -1,23 +1,16 @@
-/* PRODUCT GRID — Surf & Skate / Glassmorphism */
-
+/*BASE*/
 .grid {
     display: grid;
-
     grid-template-columns: repeat(
         auto-fit,
         minmax(240px, 1fr)
     );
-
     gap: var(--spacing-lg);
-
     width: 100%;
 }
 
 
-/* =========================
-   TABLET
-========================= */
-
+/*TABLET*/
 @media (max-width: 768px) {
 
     .grid {
@@ -25,21 +18,14 @@
             auto-fit,
             minmax(220px, 1fr)
         );
-
         gap: var(--spacing-md);
     }
 }
 
-
-/* =========================
-   MÓVIL
-========================= */
-
+/*MÓVIL*/
 @media (max-width: 480px) {
-
     .grid {
         grid-template-columns: 1fr;
-
         gap: var(--spacing-md);
     }
 }
