@@ -12,7 +12,7 @@ export function useReviews(productId) {
     async function loadReviews() {
       if (!productId) {
         setReviews([]);
-        setLoading(false);
+        setLoading(true);
         return;
       }
 
@@ -23,7 +23,8 @@ export function useReviews(productId) {
         const data = await getReviews(productId);
 
         if (isMounted) {
-          setReviews(data);
+          const reviewList = Array.isArray(data) ? data : data?.reviews || [];
+          setReviews(reviewList);
         }
       } catch (fetchError) {
         console.error(fetchError);
