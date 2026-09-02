@@ -1,10 +1,9 @@
-import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
 import CartItem from "../../components/CartItem/CartItem.jsx"
 import CartSummary from "../../components/CartSummary/CartSummary.jsx"
-import { fetchCart, addCartItem, removeCartItem, } from "../../store/cartSlice.js"
+import { addCartItem, removeCartItem, } from "../../store/cartSlice.js"
 import styles from "./CartPage.module.css"
 
 function CartPage() {
@@ -14,10 +13,6 @@ function CartPage() {
   const { items, loading, error } = useSelector(
     (state) => state.cart
   )
-
-  useEffect(() => {
-    dispatch(fetchCart())
-  }, [dispatch])
 
   const handleAdd = (item) => {
     dispatch(

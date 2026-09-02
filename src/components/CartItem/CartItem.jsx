@@ -51,3 +51,5 @@ function CartItem({ item, onAdd, onRemove }) {
     </article>
   )
 }
+
+export default CartItem

@@ -8,7 +8,6 @@ function HomePage() {
     const { products, loading, error } = useProducts();
     const [search, setSearch] = useState("");
 
-    /*Si el buscador está vacío o solo contiene espacios, se devuelve []*/
     const visibleProducts = !search.trim()
         ? []
         : products.filter((product) => {

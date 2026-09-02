@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const STORAGE_KEY = "storelab-cart"
 
-function getSavedCart() {
+export function getSavedCart() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     return saved ? JSON.parse(saved) : []
