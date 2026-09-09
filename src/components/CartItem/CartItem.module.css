@@ -158,3 +158,15 @@
         white-space: normal;
     }
 }
+
+/* StoreLab visual system: aligned with src/styles/variables.css */
+
+.content {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-xl);
+}
+

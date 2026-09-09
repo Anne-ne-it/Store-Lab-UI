@@ -106,7 +106,7 @@
     font-weight: var(--weight-bold);
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    color: #e63946;
+    color: var(--color-secondary-hover);
     background: rgba(230, 57, 70, 0.08);
     border: 1px solid rgba(230, 57, 70, 0.3);
     border-radius: var(--radius-full);
@@ -120,7 +120,7 @@
 }
 
 .removeBtn:focus-visible {
-    outline: 2px solid #e63946;
+    outline: 2px solid var(--color-secondary-hover);
     outline-offset: 2px;
 }
 
@@ -138,3 +138,47 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* StoreLab visual system: aligned with src/styles/variables.css */
+
+.card {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-lg);
+}
+
+.container {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-xl);
+}
+
+.statusMessage {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-lg);
+}
+
+.removeBtn {
+  border-radius: var(--radius-full);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.removeBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.title {
+  color: var(--color-text-main);
+}
+

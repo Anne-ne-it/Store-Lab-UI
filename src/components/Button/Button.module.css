@@ -1,18 +1,22 @@
-/*BASE*/
+/* ==========================================
+   ESTILOS BASE
+   ========================================== */
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 44px;
-    padding: 11px 22px;
-    font-family: var(--font-titles);
-    font-size: 11px;
-    font-weight: var(--weight-bold);
-    line-height: 1;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border-radius: var(--radius-full);
-    cursor: pointer;
+    display: inline-flex; /*Alinea el contenido interno usando flexbox en línea */
+    align-items: center; /*Centra verticalmente los elementos dentro del botón */
+    justify-content: center; /*Centra horizontalmente los elementos dentro del botón */
+    min-height: 44px;             /* Establece una altura mínima accesible (área táctil) */
+    padding: 11px 22px;           /* Define el relleno interno (arriba/abajo 11px, lados 22px) */
+    font-family: var(--font-titles); /* Aplica la tipografía definida en la variable CSS */
+    font-size: 11px;              /* Ajusta el tamaño de la fuente a 11px */
+    font-weight: var(--weight-bold); /* Aplica un grosor de fuente en negrita mediante variable */
+    line-height: 1;               /* Establece el interlineado compacto a 1 */
+    letter-spacing: 0.8px;        /* Añade espacio entre cada letra para mayor legibilidad */
+    text-transform: uppercase;    /* Convierte todo el texto en mayúsculas */
+    border-radius: var(--radius-full); /* Aplica bordes completamente redondeados (píldora) */
+    cursor: pointer;              /* Muestra el puntero de mano al pasar el cursor sobre el botón */
+    
+    /* Transiciones suaves para animar cambios en varias propiedades CSS durante 0.2 segundos */
     transition:
         transform 0.2s ease,
         background 0.2s ease,
@@ -23,74 +27,101 @@
 }
 
 
-/*PRIMARY*/
+/* ==========================================
+   VARIANTE PRIMARIA
+   ========================================== */
 .primary {
-    color: var(--color-text-light);
-    background: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    box-shadow: 0 8px 20px rgba(23, 107, 99, 0.20);
+    color: var(--color-text-light);    /* Color de texto claro proveniente de la variable */
+    background: var(--color-primary);  /* Color de fondo principal mediante variable */
+    border: 1px solid var(--color-primary); /* Borde de 1px del mismo color principal */
+    box-shadow: 0 8px 20px rgba(23, 107, 99, 0.20); /* Sombra suave con tinte de color */
 }
 
 .primary:hover {
-    background: var(--color-primary-hover);
-    border-color: var(--color-primary-hover);
-    transform: translateY(-2px);
-    box-shadow:0 12px 28px rgba(23, 107, 99, 0.28);
+    background: var(--color-primary-hover);  /* Cambia el fondo al estado hover */
+    border-color: var(--color-primary-hover);/* Cambia el borde al estado hover */
+    transform: translateY(-2px);             /* Eleva el botón 2px hacia arriba */
+    box-shadow: 0 12px 28px rgba(23, 107, 99, 0.28); /* Intensifica la sombra */
 }
 
 
-/*SECONDARY*/
+/* ==========================================
+   VARIANTE SECUNDARIA (Efecto Glassmorphism)
+   ========================================== */
 .secondary {
-    color: var(--color-primary);
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border-dark);
-    box-shadow: var(--shadow-glass);
+    color: var(--color-primary);           /* Texto del color primario */
+    background: var(--glass-bg);           /* Fondo semitransparente con variable glass */
+    backdrop-filter: blur(var(--glass-blur)); /* Aplica desenfoque al fondo detrás del botón */
+    -webkit-backdrop-filter: blur(var(--glass-blur)); /* Soporte para navegadores Safari */
+    border: 1px solid var(--glass-border-dark); /* Borde sutil transparente */
+    box-shadow: var(--shadow-glass);       /* Sombra personalizada de estilo cristal */
 }
 
 .secondary:hover {
-    color: var(--color-text-light);
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
+    color: var(--color-text-light);   /* Cambia el texto a color claro al pasar el cursor */
+    background: var(--color-primary); /* Cambia el fondo al color primario */
+    border-color: var(--color-primary);/* Cambia el borde al color primario */
+    transform: translateY(-2px);      /* Eleva el botón 2px hacia arriba */
 }
 
 
-/*DANGER*/
+/* ==========================================
+   VARIANTE PELIGRO / ELIMINAR
+   ========================================== */
 .danger {
-    color: var(--color-text-light);
-    background: var(--color-secondary);
-    border: 1px solid var(--color-secondary);
-    box-shadow: 0 8px 20px rgba(229, 111, 81, 0.20);
+    color: var(--color-text-light);       /* Texto en color claro */
+    background: var(--color-secondary);   /* Color de fondo secundario (usualmente rojo/alerta) */
+    border: 1px solid var(--color-secondary); /* Borde del mismo color secundario */
+    box-shadow: 0 8px 20px rgba(229, 111, 81, 0.20); /* Sombra con tinte del color de alerta */
 }
 
 .danger:hover {
-    background: var(--color-secondary-hover);
-    border-color: var(--color-secondary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(229, 111, 81, 0.28);
+    background: var(--color-secondary-hover);  /* Cambia fondo al estado hover */
+    border-color: var(--color-secondary-hover);/* Cambia borde al estado hover */
+    transform: translateY(-2px);               /* Eleva el botón 2px hacia arriba */
+    box-shadow: 0 12px 28px rgba(229, 111, 81, 0.28); /* Intensifica la sombra */
 }
 
 
-/*ACTIVE*/
+/* ==========================================
+   ESTADOS DE INTERACCIÓN (ACTIVE / DISABLED)
+   ========================================== */
+/* Se activa en el momento exacto en que el usuario presiona o hace clic en el botón */
 .button:active {
-    transform: translateY(0);
+    transform: translateY(0); /* Devuelve el botón a su posición original para simular presión */
 }
 
-
-/*DISABLED*/
+/* Se aplica cuando el botón tiene el atributo 'disabled' */
 .button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+    opacity: 0.5;            /* Reduce la opacidad al 50% para dar aspecto deshabilitado */
+    cursor: not-allowed;     /* Muestra el cursor de acción no permitida */
+    transform: none;          /* Cancela cualquier elevación o transformación */
+    box-shadow: none;         /* Remueve todas las sombras */
 }
 
 
-/*RESPONSIVE*/
+/* ==========================================
+   DISEÑO ADAPTABLE (RESPONSIVE)
+   ========================================== */
+/* Se aplica solo en pantallas con un ancho máximo de 600px (móviles) */
 @media (max-width: 600px) {
     .button {
-        width: 100%;
+        width: 100%; /* El botón ocupa todo el ancho disponible del contenedor */
     }
+}
+
+
+/* ==========================================
+   SISTEMA VISUAL STORELAB
+   ========================================== */
+/* Reescritura / Sobrescritura de propiedades globales alineadas con variables.css */
+.button {
+  border-radius: var(--radius-full); /* Asegura el redondeo completo mediante variable global */
+  /* Reconfigura las transiciones para este conjunto de reglas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px); /* Mantiene la elevación al pasar el cursor */
+  box-shadow: var(--shadow-md); /* Asigna la sombra mediana estandarizada del sistema */
 }

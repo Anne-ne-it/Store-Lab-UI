@@ -1,0 +1,91 @@
+.page {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.header h1 {
+  margin-bottom: var(--spacing-sm);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.description { color: var(--color-text-secondary); }
+
+.createButton,
+.editButton,
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  min-height: 42px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-family: var(--font-titles);
+  font-size: 0.75rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.createButton { color: var(--color-text-light); background: var(--color-primary); }
+.createButton:hover { background: var(--color-primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.tableCard,
+.empty,
+.status,
+.error {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+}
+
+.tableCard { overflow: hidden; }
+.tableHeader, .row { display: grid; grid-template-columns: minmax(260px, 2fr) 1fr 0.8fr minmax(210px, 1.2fr); align-items: center; gap: var(--spacing-md); padding: var(--spacing-md) var(--spacing-lg); }
+.tableHeader { color: var(--color-text-secondary); font-family: var(--font-accent); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--glass-border); }
+.row { border-bottom: 1px solid var(--glass-border); }
+.row:last-child { border-bottom: 0; }
+.productCell { display: flex; align-items: center; gap: var(--spacing-md); min-width: 0; }
+.productCell strong { display: block; overflow: hidden; color: var(--color-text-main); font-family: var(--font-titles); text-overflow: ellipsis; white-space: nowrap; }
+.productCell small { display: block; margin-top: var(--spacing-xs); color: var(--color-text-secondary); font-family: var(--font-accent); font-size: 0.7rem; }
+.image { width: 52px; height: 52px; flex-shrink: 0; border-radius: var(--radius-md); object-fit: cover; }
+.category { justify-self: start; padding: var(--spacing-xs) var(--spacing-sm); color: var(--color-primary); background: rgba(23, 107, 99, 0.1); border: 1px solid var(--glass-border-dark); border-radius: var(--radius-full); font-size: 0.8rem; }
+.price { color: var(--color-primary); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--spacing-xs); }
+.editButton { color: var(--color-primary); background: rgba(23, 107, 99, 0.1); border: 1px solid var(--glass-border-dark); }
+.deleteButton { color: var(--color-secondary-hover); background: rgba(229, 111, 81, 0.1); border: 1px solid rgba(229, 111, 81, 0.28); cursor: pointer; }
+.editButton:hover, .deleteButton:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.deleteButton:disabled { cursor: wait; opacity: 0.6; }
+.empty, .status, .error { padding: var(--spacing-xl); text-align: center; }
+.empty h2 { margin-bottom: var(--spacing-sm); }
+.empty p { margin-bottom: var(--spacing-lg); color: var(--color-text-secondary); }
+.error { margin-bottom: var(--spacing-md); color: var(--color-secondary-hover); background: rgba(229, 111, 81, 0.1); border-color: rgba(229, 111, 81, 0.28); }
+
+@media (max-width: 800px) {
+  .header { align-items: flex-start; flex-direction: column; }
+  .tableHeader { display: none; }
+  .row { grid-template-columns: 1fr auto; gap: var(--spacing-sm); padding: var(--spacing-md); }
+  .productCell { grid-column: 1 / -1; }
+  .category, .price { justify-self: start; }
+  .actions { justify-content: flex-end; }
+}

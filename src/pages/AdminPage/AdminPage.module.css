@@ -1,0 +1,68 @@
+.page {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+.hero {
+  max-width: 720px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.14em;
+}
+
+.hero h1 {
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.description {
+  max-width: 600px;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-md);
+}
+
+.card {
+  min-height: 210px;
+  padding: var(--spacing-lg);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+}
+
+.number {
+  display: block;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-secondary);
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+}
+
+.card h2 {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.25rem;
+}
+
+.card p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

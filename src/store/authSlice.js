@@ -15,18 +15,14 @@ function getSavedUser() {
 async function authRequest(endpoint, credentials) {
   const response = await fetch(`${API_URL}${endpoint}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
   })
 
   const data = await response.json()
-
   if (!response.ok) {
     throw new Error(data.message || "No se pudo completar la operación")
   }
-
   return data.data
 }
 
@@ -34,14 +30,9 @@ export const register = createAsyncThunk(
   "auth/register",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const data = await authRequest("/auth/register", {
-        email,
-        password,
-      })
-
+      const data = await authRequest("/api/auth/register", { email, password })
       localStorage.setItem("token", data.token)
       localStorage.setItem("user", JSON.stringify(data.user))
-
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -53,14 +44,9 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const data = await authRequest("/auth/login", {
-        email,
-        password,
-      })
-
+      const data = await authRequest("/api/auth/login", { email, password })
       localStorage.setItem("token", data.token)
       localStorage.setItem("user", JSON.stringify(data.user))
-
       return data
     } catch (error) {
       return rejectWithValue(error.message)
@@ -84,7 +70,6 @@ const authSlice = createSlice({
       state.user = null
       state.loading = false
       state.error = null
-
       localStorage.removeItem("token")
       localStorage.removeItem("user")
     },
@@ -124,4 +109,8 @@ const authSlice = createSlice({
 })
 
 export const { logout, clearError } = authSlice.actions
+
+export const selectIsAdmin = (state) =>
+  String(state.auth.user?.role || "").toUpperCase() === "ADMIN"
+
 export default authSlice.reducer
