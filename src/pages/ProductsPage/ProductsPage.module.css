@@ -145,7 +145,7 @@
 
     letter-spacing: 1.5px;
 
-    color: var(--color-primary);
+    color: #ffffff !important;
 }
 
 
@@ -166,7 +166,7 @@
     line-height: 0.95;
     letter-spacing: -0.05em;
 
-    color: var(--color-text-main);
+    color: #ffffff !important;
 }
 
 
@@ -187,7 +187,7 @@
 
     line-height: 1.7;
 
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 
@@ -310,7 +310,7 @@
 }
 
 .eyebrow {
-  color: var(--color-primary);
+  color: #ffffff !important;
   font-family: var(--font-accent);
   letter-spacing: 0.14em;
 }

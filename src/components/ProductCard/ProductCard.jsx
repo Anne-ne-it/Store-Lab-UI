@@ -20,8 +20,17 @@ function ProductCard({ product }) {
 
   return (
     <article className={styles.card}>
-      {/* 2. Añadir el botón pasándole product.id */}
       <WishlistButton productId={product.id} />
+
+      {product.image && (
+        <div className={styles.imageWrap}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className={styles.image}
+          />
+        </div>
+      )}
 
       <span className={styles.category}>{product.category}</span>
       <h2 className={styles.title}>

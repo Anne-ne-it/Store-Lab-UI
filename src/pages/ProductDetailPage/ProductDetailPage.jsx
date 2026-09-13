@@ -100,11 +100,13 @@ function ProductDetailPage() {
     <main className={styles.ProductDetailPage}>
       <section className={styles.product}>
         <div className={styles.imageContainer}>
-          <img
-            className={styles.productImage}
-            src={product.image}
-            alt={product.name}
-          />
+          {product.image ? (
+            <img
+              className={styles.productImage}
+              src={product.image || undefined}
+              alt={product.name}
+            />
+          ) : null}
         </div>
 
         <div className={styles.productInfo}>

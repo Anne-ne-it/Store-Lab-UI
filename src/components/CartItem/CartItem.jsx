@@ -13,7 +13,9 @@ function CartItem({ item, onAdd, onRemove, onDecrease }) { //Declara el componen
       {/*Contenedor de la imagen del producto*/}
       <div className={styles.imageWrapper}>
         {/*Etiqueta de imagen con la URL del producto y el texto alternativo*/}
-        <img className={styles.image} src={product.image} alt={product.name} />
+        {product.image ? (
+          <img className={styles.image} src={product.image || undefined} alt={product.name} />
+        ) : null}
       </div>
 
       {/*Bloque central con los detalles informativos y controles*/}

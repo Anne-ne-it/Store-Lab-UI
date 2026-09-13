@@ -30,19 +30,36 @@
 
 html,
 body {
-  min-height: 100%;
+  margin: 0;
   width: 100%;
+  min-height: 100%;
+  min-height: 100vh;
 }
 
+html {
+  background-color: #102322;
+}
 
 body {
   font-family: var(--font-body);
   color: var(--color-text-main);
-  background: var(--color-bg-main);
-
+  background-color: #102322;
+  background-image:
+    linear-gradient(rgba(10, 20, 24, 0.52), rgba(10, 20, 24, 0.52)),
+    url("https://res.cloudinary.com/dclogxnep/image/upload/v1789316156/streetSkate_cy16mj.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  overflow-x: hidden;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  background: transparent;
 }
 
 

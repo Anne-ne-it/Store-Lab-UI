@@ -36,11 +36,13 @@ function WishlistPage() {
           {favoriteProducts.map((product) => (
             <article key={product.id} className={styles.card}>
               <Link to={`/products/${product.id}`} className={styles.productLink}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className={styles.image}
-                />
+                {product.image ? (
+                  <img
+                    src={product.image || undefined}
+                    alt={product.name}
+                    className={styles.image}
+                  />
+                ) : null}
                 <h2 className={styles.productName}>{product.name}</h2>
               </Link>
 

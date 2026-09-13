@@ -11,7 +11,7 @@
 
 .eyebrow {
   margin-bottom: var(--spacing-sm);
-  color: var(--color-primary);
+  color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: var(--weight-bold);
@@ -21,11 +21,12 @@
 .hero h1 {
   margin-bottom: var(--spacing-md);
   font-size: clamp(2rem, 5vw, 4rem);
+  color: #ffffff;
 }
 
 .description {
   max-width: 600px;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.05rem;
 }
 

@@ -77,7 +77,9 @@ function AdminProductsPage() {
             {products.map((product) => (
               <article className={styles.row} key={product.id}>
                 <div className={styles.productCell}>
-                  <img src={product.image} alt="" className={styles.image} />
+                  {product.image ? (
+                    <img src={product.image || undefined} alt="" className={styles.image} />
+                  ) : null}
                   <div>
                     <strong>{product.name}</strong>
                     <small>ID #{product.id}</small>

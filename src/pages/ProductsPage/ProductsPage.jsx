@@ -56,9 +56,6 @@ function ProductsPage() {
           {category ? `Catálogo · ${category}` : "Nuestro catálogo"}
         </h1>
 
-        <p className={styles.description}>
-          Material, estilo y actitud para disfrutar de cada sesión dentro y fuera del agua.
-        </p>
       </header>
 
       <div className={styles.searchBox}>

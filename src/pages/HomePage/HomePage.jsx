@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useProducts } from "../../hooks/UseProducts";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import styles from "./HomePage.module.css";
@@ -7,6 +7,20 @@ import styles from "./HomePage.module.css";
 function HomePage() {
     const { products, loading, error } = useProducts();
     const productIds = useSelector((state) => state.wishlist.productIds);
+    const navigate = useNavigate();
+
+    const newestProducts = [...products]
+        .sort((a, b) => {
+            const aDate = new Date(a.createdAt || a.created_at || a.created || 0).getTime();
+            const bDate = new Date(b.createdAt || b.created_at || b.created || 0).getTime();
+
+            if (!Number.isNaN(aDate) && !Number.isNaN(bDate) && aDate !== 0 && bDate !== 0) {
+                return bDate - aDate;
+            }
+
+            return Number(b.id ?? 0) - Number(a.id ?? 0);
+        })
+        .slice(0, 4);
 
     const favoriteProducts = products.filter((product) =>
         productIds.includes(product.id)
@@ -64,17 +78,21 @@ function HomePage() {
                 <div className={styles.sectionHeader}>
                     <div>
                         <p className={styles.sectionEyebrow}>NO TE PIERDAS NADA</p>
-                        <h2>Favoritos</h2>
+                        <h2>Novedades</h2>
                     </div>
 
-                    <Link to="/wishlist" className={styles.viewAll}>
+                    <button
+                        type="button"
+                        className={styles.viewAll}
+                        onClick={() => navigate("/products?sort=newest&limit=4")}
+                    >
                         Ver todos
-                    </Link>
+                    </button>
                 </div>
 
                 {loading && (
                     <p className={styles.status}>
-                        Cargando favoritos...
+                        Cargando novedades...
                     </p>
                 )}
 
@@ -83,6 +101,29 @@ function HomePage() {
                         {error}
                     </p>
                 )}
+
+                {!loading && !error && newestProducts.length === 0 && (
+                    <p className={styles.favoriteEmpty}>
+                        Aún no hay productos recientes en la colección.
+                    </p>
+                )}
+
+                {!loading && !error && newestProducts.length > 0 && (
+                    <ProductGrid products={newestProducts} />
+                )}
+            </section>
+
+            <section className={styles.favoritesSection}>
+                <div className={styles.sectionHeader}>
+                    <div>
+                        <p className={styles.sectionEyebrow}>CURADO PARA TI</p>
+                        <h2>Favoritos</h2>
+                    </div>
+
+                    <Link to="/wishlist" className={styles.viewAll}>
+                        Ver todos
+                    </Link>
+                </div>
 
                 {!loading && !error && favoriteProducts.length === 0 && (
                     <p className={styles.favoriteEmpty}>
