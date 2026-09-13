@@ -1,45 +1,45 @@
-import axios from "axios" //Importa la librería Axios para realizar peticiones HTTP
-import { store } from "../store/index.js" //Importa el Store centralizado de Redux donde se maneja el estado global de la aplicación
-import { logout } from "../store/authSlice.js" //Importa la acción de Redux para cerrar la sesión del usuario
+import axios from "axios" // Importa la librería Axios para poder hacer peticiones HTTP desde la aplicación
+import { store } from "../store/index.js" // Importa el store global de Redux para poder despachar acciones de sesión si hace falta
+import { logout } from "../store/authSlice.js" // Importa la acción logout para cerrar la sesión cuando el backend responde 401
 
-const api = axios.create({ //Crea y configura una instancia personalizada de Axios que se reutilizará en toda la aplicación
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000", //Define la URL base de la API sacándola del archivo de variables de entorno, o usa localhost por defecto
-  withCredentials: true,
-  headers: { //Define los encabezados por defecto que se enviarán en cada petición
-    "Content-Type": "application/json",
+const api = axios.create({ // Crea una instancia personalizada de Axios para reutilizarla en toda la app
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000", // Define la URL base del backend usando la variable de entorno o localhost si no existe
+  withCredentials: true, // Permite enviar y recibir cookies dentro de las peticiones, necesario para autenticación basada en sesión
+  headers: { // Define los headers por defecto que se enviarán en cada petición
+    "Content-Type": "application/json", // Indica que el contenido enviado es JSON
   },
 })
 
-const isRealAuthToken = (value) => Boolean(value) && value !== "cookie-authenticated" && value !== "null" && value !== "undefined"
+const isRealAuthToken = (value) => Boolean(value) && value !== "cookie-authenticated" && value !== "null" && value !== "undefined" // Valida que el token guardado sea un valor real y no un marcador artificial de sesión
 
-api.interceptors.request.use( //Interceptor de peticiones: se ejecuta de manera automática JUSTO ANTES de que cualquier petición salga al servidor
+api.interceptors.request.use( // Ejecuta código justo antes de enviar cada petición HTTP
   (config) => {
-    config.withCredentials = true
+    config.withCredentials = true // Asegura que la cookie de sesión siga presente en cada llamada
 
-    const token = localStorage.getItem("token") //Busca si existe un token de autenticación guardado en el almacenamiento local del navegador
+    const token = localStorage.getItem("token") // Busca el token almacenado en localStorage para saber si el usuario está autenticado
 
-    if (isRealAuthToken(token)) { //Si el token existe y es un JWT real, se adjunta en la cabecera Authorization como un token Bearer
+    if (isRealAuthToken(token)) { // Si existe un token JWT real, lo añade en la cabecera Authorization como Bearer
       config.headers.Authorization = `Bearer ${token}`
     } else {
-      delete config.headers.Authorization
+      delete config.headers.Authorization // Si no hay token válido, elimina cualquier Authorization previa para evitar errores
     }
 
-    return config //Retorna la configuración modificada para que la petición pueda enviarse
+    return config // Devuelve la configuración final lista para salir al servidor
   },
 
-  (error) => Promise.reject(error) //Manejo de errores que ocurran en el momento de preparar o enviar la petición
+  (error) => Promise.reject(error) // Si ocurre un error durante la preparación de la petición, se propaga para manejarlo más arriba
 )
 
-api.interceptors.response.use( //Interceptor de respuestas: se ejecuta de manera automática CUANDO LLEGA la respuesta del servidor
-  (response) => response, //Si la petición fue exitosa, retorna la respuesta tal cual
-  (error) => { //Si ocurrió un error en la comunicación con el servidor
+api.interceptors.response.use( // Ejecuta código cuando llega la respuesta del servidor
+  (response) => response, // Si la petición ha sido correcta, devuelve la respuesta tal cual
+  (error) => { // Si la petición falla, entra aquí para manejar errores globales
     
-    if (error.response?.status === 401) { //Comprueba si el servidor respondió con un código de estado 401 (No autorizado / Token inválido o expirado)
-      store.dispatch(logout()) //Despacha la acción de Redux para limpiar el estado del usuario y cerrar su sesión
+    if (error.response?.status === 401) { // Si el backend responde con 401, significa que el token es inválido o la sesión expiró
+      store.dispatch(logout()) // Despacha la acción logout para limpiar la sesión del usuario y dejar la app en estado no autenticado
     }
 
-    return Promise.reject(error) //Reenvía el error para que la función que hizo la petición original pueda capturarlo si lo necesita
+    return Promise.reject(error) // Reenvía el error para que la función que lanzó la petición pueda decidir cómo mostrarlo
   }
 )
 
-export default api //Exporta la instancia configurada de Axios para ser usada en los servicios de la aplicación
+export default api // Exporta la instancia configurada para reutilizarla en todos los servicios de la API

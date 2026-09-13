@@ -40,8 +40,6 @@
   color: var(--color-secondary-hover);
 }
 
-/* StoreLab visual system: aligned with src/styles/variables.css */
-
 .container {
   background: var(--glass-bg-strong);
   backdrop-filter: blur(var(--glass-blur));

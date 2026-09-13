@@ -231,7 +231,6 @@
     }
 }
 
-/* StoreLab visual system: aligned with src/styles/variables.css */
 
 .empty {
   background: var(--glass-bg-strong);

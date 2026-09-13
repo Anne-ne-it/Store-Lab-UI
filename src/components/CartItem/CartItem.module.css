@@ -1,248 +1,242 @@
 /*CONTENEDOR PRINCIPAL*/
 .item {
-    display: grid; /*Activa el modo de diseño grid para estructurar hijos*/
-    grid-template-columns: 96px minmax(0, 1fr) auto; /*Crea tres columnas*/
-    align-items: center; /*Alinea verticalmente los elementos al centro de la tarjeta*/
-    gap: var(--spacing-md); /*Separación horizontal entre columnas*/
-    padding: var(--spacing-lg); /*Espaciado interno de la tarjeta*/
-    margin-bottom: var(--spacing-md); /*Separación vertical respecto a la tarjeta inferior*/
-    background: var(--glass-bg-strong); /*Asigna el color de fondo*/
-    border: 1px solid var(--glass-border); /*Asigna un borde a la tarjeta*/
-    border-radius: var(--radius-lg); /*Redondea las esquinas*/
-    box-shadow: var(--shadow-glass); /*Añade una sombra suave*/
-    backdrop-filter: blur(var(--glass-blur)); /*Aplica desenfoque al fondo detras de la tarjeta*/
-    -webkit-backdrop-filter: blur(var(--glass-blur)); /*Lo mismo que la lianea anterior pero para safari*/
-    transition: /*Transición suave para el efecto de elevación al pasar el cursor*/
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    display: flex; /*Activa el modelo de caja flexible*/
+    flex-direction: column; /*Organiza los elementos hijos en columna vertical*/
+    gap: var(--spacing-md); /*Espacio vertical uniforme entre los elementos hijos*/
+    padding: var(--spacing-lg); /*Relleno interno alrededor de la tarjeta*/
+    margin-bottom: var(--spacing-md); /*Margen inferior para separarlo de otras tarjetas*/
+    background: var(--glass-bg-strong); /*Fondo semi-transparente estilo cristal*/
+    border: 1px solid var(--glass-border); /*Borde sutil semi-transparente*/
+    border-radius: var(--radius-lg); /*Esquinas redondeadas grandes*/
+    box-shadow: var(--shadow-glass); /*Sombra suave para dar profundidad de cristal*/
+    backdrop-filter: blur(var(--glass-blur)); /*Aplica desenfoque al fondo que está detrás de la tarjeta*/
+    -webkit-backdrop-filter: blur(var(--glass-blur)); /*Compatibilidad con desenfoque en navegadores Safari*/
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /*Transición suave al mover la tarjeta o cambiar su sombra*/
 }
 
 .item:hover {
-    transform: translateY(-2px); /*La tarjeta se eleva 2px*/
-    box-shadow: var(--shadow-md); /*Aumenta su sombra*/
+    transform: translateY(-2px); /*Eleva ligeramente la tarjeta 2 píxeles hacia arriba*/
+    box-shadow: var(--shadow-md); /*Intensifica la sombra para simular elevación*/
 }
 
 /*CONTENEDOR DE IMAGEN*/
 .imageWrapper {
-    width: 96px; /*Ancho*/
-    height: 96px; /*Alto*/
-    overflow: hidden; /*Recorta cualquier desborde de la imagen*/
-    background: var(--color-bg-secondary); /*Fondo secundario por si la imagen no carga*/
-    border: 1px solid var(--color-border-light); /*Añade un borde suave*/
-    border-radius: var(--radius-sm); /*Redondea las esquinas*/
+    width: 100%; /*Ocupa el 100% del ancho de la tarjeta*/
+    height: 220px; /*Establece una altura fija de 220 píxeles*/
+    overflow: hidden; /*Recorta cualquier parte de la imagen que sobresalga del marco*/
+    background: var(--color-bg-secondary); /*Color de fondo mientras la imagen carga*/
+    border: 1px solid var(--color-border-light); /*Borde suave alrededor de la imagen*/
+    border-radius: var(--radius-md); /*Esquinas redondeadas medianas para la imagen*/
 }
 
 .image {
-    display: block; /*Quita posibles espacios en blanco*/
-    width: 100%; /*Ancho*/
-    height: 100%; /*Alto*/
-    object-fit: cover; /*Mantiene la proporción de la imagen cubriendo todo el marco*/
+    display: block; /*Quita posibles espacios en blanco inferiores del elemento inline por defecto*/
+    width: 100%; /*La imagen ocupa el 100% del ancho del contenedor*/
+    height: 100%; /*La imagen ocupa el 100% de la altura del contenedor*/
+    object-fit: cover; /*Mantiene la proporción de la imagen cubriendo todo el marco sin deformarse*/
 }
 
 /*INFORMACIÓN DEL PRODUCTO*/
 .content {
-    min-width: 0; /*Previene que el texto largo rompa el diseño Grid*/
-    display: flex; /*Crea el contendor felxbox*/
-    flex-direction: column; /*Pone los elementos uno sobre otro*/
-    justify-content: center; /*Centra el contenido con el eje vertical*/
-    gap: 8px; /*Espaciado vertical entre textos*/
+    min-width: 0; /*Permite que el contenedor se reduzca correctamente sin desbordarse*/
+    display: flex; /*Activa el modelo de caja flexible*/
+    flex-direction: column; /*Organiza el texto en formato vertical*/
+    justify-content: center; /*Centra el contenido en el eje vertical*/
+    gap: 8px; /*Espacio de 8 píxeles entre cada línea de texto*/
 }
 
 .category {
-    margin: 0;
-    color: var(--color-primary);
-    font-family: var(--font-accent);
-    font-size: 0.7rem;
-    font-weight: var(--weight-bold);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
+    margin: 0; /*Elimina los márgenes por defecto del texto*/
+    color: var(--color-primary); /*Asigna el color principal de la marca*/
+    font-family: var(--font-accent); /*Asigna la tipografía destacada/secundaria*/
+    font-size: 0.7rem; /*Tamaños de fuente pequeño*/
+    font-weight: var(--weight-bold); /* Texto en negrita*/
+    letter-spacing: 0.08em; /*Aumenta el espaciado entre letras*/
+    text-transform: uppercase; /*Convierte todo el texto a mayúsculas*/
+} 
 
 .name {
-    margin: 0;
-    overflow: hidden;
-
-    color: var(--color-text-main);
-    font-family: var(--font-titles);
-    font-size: 1.1rem;
-    font-weight: var(--weight-bold);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-
-    text-overflow: ellipsis; /* Añade "..." si el texto no cabe en una sola línea */
-    white-space: nowrap;
+    margin: 0; /*Elimina los márgenes por defecto del título*/
+    overflow: hidden; /*Oculta cualquier texto que sobrepase el contenedor*/
+    color: var(--color-text-main); /*Asigna el color principal de texto*/
+    font-family: var(--font-titles); /*Asigna la tipografía de títulos*/
+    font-size: 1.1rem; /*Tamaños de fuente ligeramente grande*/
+    font-weight: var(--weight-bold); /*Texto en negrita*/
+    letter-spacing: -0.02em; /*Reduce ligeramente el espaciado entre letras*/
+    line-height: 1.2; /*Define la altura de línea*/
+    text-overflow: ellipsis; /*Añade puntos suspensivos si el texto no cabe*/
+    white-space: nowrap; /*Fuerza a que el texto permanezca en una sola línea*/
 }
 
 .quantity {
-    margin: 0;
-    color: var(--color-text-secondary);
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.4;
+    margin: 0; /*Elimina el margen por defecto*/
+    color: var(--color-text-secondary); /*Color de texto secundario*/
+    font-family: var(--font-body); /*Tipografía del cuerpo de texto*/
+    font-size: 0.9rem; /*Tamaños de fuente medio-pequeño*/
+    line-height: 1.4; /*Altura de línea para buena legibilidad*/
 }
 
 .quantity strong {
-    color: var(--color-text-main);
+    color: var(--color-text-main); /*Resalta el texto en negrita con el color principal*/
 }
 
-/* =========================
-   CONTROLES DE CANTIDAD
-   ========================= */
-
+/*CONTROLES DE CANTIDAD*/
 .quantityBox {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 4px;
+    display: flex; /*Activa la caja flexible*/
+    flex-direction: column; /*Organiza la etiqueta y controles verticalmente*/
+    gap: 8px; /*Espacio entre la etiqueta y los botones*/
+    margin-top: 4px; /*Pequeña separación en la parte superior*/
 }
 
 .quantityLabel {
-    color: var(--color-text-secondary);
-    font-family: var(--font-accent);
-    font-size: 0.68rem;
-    font-weight: var(--weight-bold);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    color: var(--color-text-secondary); /*Color de texto*/
+    font-family: var(--font-accent); /*Fuente acentuada*/
+    font-size: 0.68rem; /*Tamaño de fuente muy pequeño*/
+    font-weight: var(--weight-bold); /*Texto en negrita*/
+    letter-spacing: 0.08em; /*Espaciado entre letras más amplio*/
+    text-transform: uppercase; /*Convierte el texto a mayúsculas*/
 }
 
-/* Cápsula traslúcida que agrupa los botones + / - y el número */
 .quantityControls {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-full);
+    display: inline-flex; /*Activa flexbox ajustado al ancho de su contenido*/
+    align-items: center; /*Centra los botones y números verticalmente*/
+    gap: 10px; /*Espacio horizontal de 10 píxeles entre los botones y el valor*/
+    padding: 6px 8px; /*Relleno interno superior/inferior e izquierdo/derecho*/
+    background: rgba(255, 255, 255, 0.06); /*Fondo blanco casi transparente*/
+    border: 1px solid var(--glass-border); /*Borde sutil transparente*/
+    border-radius: var(--radius-full); /*Esquinas totalmente redondeadas (forma de píldora)*/
 }
 
-/* Botones circulares para incrementar / decrementar */
 .quantityButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    color: var(--color-text-main);
-    background: var(--color-bg-secondary-hover);
-    border: none;
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: var(--weight-bold);
-    line-height: 1;
-    transition: transform 0.15s ease, opacity 0.2s ease, background 0.2s ease;
+    display: inline-flex; /*Activa flexbox inline para centrar su contenido interno*/
+    align-items: center; /*Centra el icono verticalmente*/
+    justify-content: center; /*Centra el icono horizontalmente*/
+    width: 32px; /*Ancho fijo*/
+    height: 32px; /*Altura fija*/
+    padding: 0; /*Elimina el relleno por defecto del botón*/
+    color: var(--color-text-main); /*Color del icono (+ / -)*/
+    background: var(--color-bg-secondary-hover); /*Fondo predeterminado del botón*/
+    border: none; /*Quita el borde por defecto del botón HTML*/
+    border-radius: var(--radius-full); /*Hace el botón completamente circular*/
+    cursor: pointer; /*Cambia el cursor a una mano al pasar por encima*/
+    font-size: 1.2rem; /*Tamaño de los caracteres + y -*/
+    font-weight: var(--weight-bold); /*Caracteres en negrita*/
+    line-height: 1; /*Altura de línea ajustada para alineación rápida*/
+    transition: transform 0.15s ease, opacity 0.2s ease, background 0.2s ease; /*Transiciones suaves*/
 }
 
 .quantityButton:hover:not(:disabled) {
-    transform: translateY(-1px);
-    background: var(--color-bg-secondary);
+    transform: translateY(-1px); /*Eleva el botón 1 píxel hacia arriba*/
+    background: var(--color-bg-secondary); /*Cambia el fondo a una tonalidad diferente*/
 }
 
-/* Estado deshabilitado (ej. cuando la cantidad es 1) */
 .quantityButton:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
+    opacity: 0.45; /*Reduce la opacidad para dar apariencia desactivada*/
+    cursor: not-allowed; /*Cambia el cursor a un icono de prohibido*/
 }
 
 .quantityValue {
-    min-width: 28px;
-    color: var(--color-text-main);
-    font-family: var(--font-titles);
-    font-size: 1rem;
-    font-weight: var(--weight-bold);
-    text-align: center;
+    min-width: 28px; /*Ancho mínimo para evitar saltos si el número cambia de dígitos*/
+    color: var(--color-text-main); /*Color del texto del número*/
+    font-family: var(--font-titles); /*Fuente del número*/
+    font-size: 1rem; /*Tamaño de texto mediano*/
+    font-weight: var(--weight-bold); /*Texto en negrita*/
+    text-align: center; /*Centra el texto dentro de su ancho mínimo*/
 }
 
-/* =========================
-   ACCIONES Y PRECIO (.actions)
-   ========================= */
-
+/*ACCIONES Y PRECIO*/
 .actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;
+    display: flex; /*Activa la caja flexible*/
+    align-items: center; /*Centra verticalmente el precio y el botón*/
+    justify-content: space-between; /*Coloca el precio a la izquierda y el botón a la derecha*/
+    gap: 12px; /*Espacio horizontal de reserva si se juntan*/
+    width: 100%; /*Ocupa todo el ancho disponible del contenedor*/
 }
 
 .price {
-    margin: 0;
-    color: var(--color-primary);
-    font-family: var(--font-accent);
-    font-size: 0.95rem;
-    font-weight: var(--weight-bold);
-    white-space: nowrap;
+    margin: 0; /*Elimina márgenes por defecto*/
+    color: var(--color-primary); /*Color destacado para resaltar el precio*/
+    font-family: var(--font-accent); /*Fuente acentuada*/
+    font-size: 0.95rem; /*Tamaño de fuente ligeramente menor*/
+    font-weight: var(--weight-bold); /*Texto en negrita*/
+    white-space: nowrap; /*Impide que el precio se rompa en dos líneas*/
 }
 
 .removeButton {
-    padding: 10px 16px;
-    color: var(--color-secondary-hover);
-    background: transparent;
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: var(--weight-bold);
-
-    transition:
-        color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    padding: 10px 16px; /*Relleno interno vertical y horizontal*/
+    color: var(--color-secondary-hover); /*Color del texto del botón*/
+    background: transparent; /*Fondo transparente por defecto*/
+    border: 1px solid var(--color-secondary); /*Borde delgado alrededor del botón*/
+    border-radius: var(--radius-full); /*Esquinas redondeadas tipo píldora*/
+    cursor: pointer; /*Cursor en forma de mano*/
+    font-family: var(--font-body); /*Tipografía del cuerpo*/
+    font-size: 0.8rem; /*Tamaño de letra pequeño*/
+    font-weight: var(--weight-bold); /*Texto en negrita*/
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; /*Transiciones suaves al interactuar*/
 }
 
 .removeButton:hover {
-    color: var(--color-text-light);
-    background: var(--color-secondary);
-    box-shadow: var(--shadow-sm);
-    transform: translateY(-1px);
+    color: var(--color-text-light); /*Cambia el color del texto a más claro*/
+    background: var(--color-secondary); /*Fondo con el color secundario*/
+    box-shadow: var(--shadow-sm); /*Aplica una sombra sutil*/
+    transform: translateY(-1px); /*Sube el botón 1 píxel*/
 }
 
 .removeButton:active {
-    transform: scale(0.96);
+    transform: scale(0.96); /*Reduce ligeramente el tamaño del botón para dar efecto de pulsado*/
 }
 
 .removeButton:focus-visible {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 3px;
+    outline: 3px solid var(--color-accent); /*Muestra un contorno visible*/
+    outline-offset: 3px; /*Separa el contorno fuera del borde del botón*/
 }
 
-/* =========================
-   ADAPTACIÓN MÓVIL (< 640px)
-   ========================= */
-
+/*ADAPTACIÓN MÓVIL*/
 @media (max-width: 640px) {
     .item {
-        /* Cambia el Grid a 2 columnas para que la imagen y el texto queden arriba */
-        grid-template-columns: 72px minmax(0, 1fr);
-        align-items: start;
-        gap: 16px;
-        padding: 24px;
+        padding: 18px 14px; /*Reduce el relleno de la tarjeta para ahorrar espacio*/
     }
 
     .imageWrapper {
-        width: 72px;
-        height: 72px;
+        height: 180px; /*Reduce la altura de la imagen en pantallas pequeñas*/
     }
 
     .content {
-        gap: 6px;
-    }
-
-    /* Mueve las acciones a la parte inferior ocupando todo el ancho */
-    .actions {
-        grid-column: 1 / -1; /* Ocupa las 2 columnas del grid */
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding-top: 16px;
-        border-top: 1px solid var(--color-border-dark);
+        gap: 6px; /*Reduce ligeramente la separación interna del texto*/
+        min-width: 0; /*Asegura que no se desborde el ancho disponible*/
     }
 
     .name {
-        white-space: normal; /* Permite salto de línea en pantallas pequeñas */
+        white-space: normal; /*Permite que el nombre del producto ocupe varias líneas si es largo*/
+        font-size: 1rem; /*Reduce ligeramente el tamaño de la fuente*/
+        line-height: 1.3; /*Aumenta la altura de línea para cuando haya múltiples líneas*/
+    }
+
+    .quantityBox {
+        margin-top: 2px; /*Reduce la separación superior*/
+    }
+
+    .quantityControls {
+        width: fit-content; /*Ajusta el ancho al contenido interno exacto*/
+        max-width: 100%; /*Garantiza que no sobrepase el ancho de la tarjeta*/
+    }
+
+    .actions {
+        flex-wrap: wrap; /*Permite que el botón pase a la línea de abajo si falta espacio*/
+        align-items: center; /*Centra los elementos de la sección verticalmente*/
+        justify-content: space-between; /*Distribuye espacio entre elementos*/
+        gap: 12px; /*Mantiene la separación entre elementos*/
+        padding-top: 12px; /*Añade un espacio en la parte superior del bloque*/
+        border-top: 1px solid var(--color-border-dark); /*Añade una línea divisoria superior*/
+    }
+
+    .price {
+        font-size: 0.9rem; /*Reduce ligeramente el tamaño de fuente del precio*/
+    }
+
+    .removeButton {
+        flex-shrink: 0; /*Evita que el botón se comprima si falta espacio horizontal*/
+        padding: 9px 14px; /*Ajusta ligeramente el relleno del botón*/
+        min-width: 104px; /*Asegura un ancho mínimo de 104 píxeles para presionar fácilmente*/
     }
 }

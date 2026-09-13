@@ -15,6 +15,7 @@ import CheckoutPage from "../pages/CheckoutSuccesPage/CheckoutPage.jsx"
 import AdminPage from "../pages/AdminPage/AdminPage.jsx"
 import AdminProductsPage from "../pages/AdminProductsPage/AdminProductsPage.jsx"
 import AdminProductFormPage from "../pages/AdminProductFormPage/AdminProductFormPage.jsx"
+import AdminUsersPage from "../pages/AdminUsersPage/AdminUsersPage.jsx"
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.jsx"
 
 const router = createBrowserRouter([{ path: "/", element: <Layout />, errorElement: <NotFoundPage />, children: [
@@ -35,6 +36,7 @@ const router = createBrowserRouter([{ path: "/", element: <Layout />, errorEleme
     { path: "admin/products", element: <AdminProductsPage /> },
     { path: "admin/products/new", element: <AdminProductFormPage /> },
     { path: "admin/products/:id/edit", element: <AdminProductFormPage /> },
+    { path: "admin/users", element: <AdminUsersPage /> },
   ] },
   { path: "*", element: <NotFoundPage /> },
 ] }])

@@ -1,25 +1,18 @@
-.formBox,
-.loginMessage {
+.formBox, .loginMessage {
     margin-top: var(--spacing-xl);
     padding: 40px;
-
     background: var(--glass-bg-strong);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-glass);
-
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 
-/* =========================
-   EYEBROW
-========================= */
-
+/*EYEBROW*/
 .eyebrow {
     margin: 0 0 12px;
-
     color: var(--color-primary);
     font-family: var(--font-accent);
     font-size: 0.72rem;
@@ -29,10 +22,7 @@
 }
 
 
-/* =========================
-   TITLE
-========================= */
-
+/*TITLE*/
 .title {
     margin: 0 0 32px;
 
@@ -43,41 +33,30 @@
 }
 
 
-/* =========================
-   FORM
-========================= */
-
+/*FORM*/
 .form {
     display: grid;
     gap: 28px;
 }
 
 
-/* =========================
-   RATING
-========================= */
-
+/*RATING*/
 .ratingFieldset {
     padding: 0;
     margin: 0;
     border: 0;
 }
 
-.legend,
-.commentLabel {
+.legend, .commentLabel {
     display: block;
     margin-bottom: 14px;
-
     color: var(--color-text-main);
     font-size: 0.9rem;
     font-weight: var(--weight-bold);
 }
 
 
-/* =========================
-   RATING BUTTONS
-========================= */
-
+/*RATING BUTTONS*/
 .ratingButtons {
     display: flex;
     gap: 10px;
@@ -87,28 +66,22 @@
     width: 42px;
     height: 42px;
     padding: 0;
-
     color: var(--color-text-secondary);
     background: var(--glass-bg);
     border: 1px solid var(--glass-border-dark);
     border-radius: var(--radius-sm);
-
     cursor: pointer;
-
     font-size: 1.25rem;
     line-height: 1;
-
     transition:
         color 0.2s ease,
         background 0.2s ease,
         transform 0.2s ease;
 }
 
-.starButton:hover,
-.starButton.selected {
+.starButton:hover, .starButton.selected {
     color: var(--color-text-light);
     background: var(--color-accent-hover);
-
     transform: translateY(-2px);
 }
 
@@ -117,10 +90,7 @@
 }
 
 
-/* =========================
-   TEXTAREA
-========================= */
-
+/*TEXTAREA*/
 .commentLabel {
     display: grid;
     gap: 10px;
@@ -130,16 +100,12 @@
     width: 100%;
     min-height: 150px;
     padding: 16px;
-
     resize: vertical;
     box-sizing: border-box;
-
     color: var(--color-text-main);
     background: var(--glass-bg);
-
     border: 1px solid var(--glass-border-dark);
     border-radius: var(--radius-md);
-
     font-family: var(--font-body);
     font-size: 0.95rem;
     line-height: 1.6;
@@ -150,13 +116,9 @@
 }
 
 
-/* =========================
-   CHARACTER COUNTER
-========================= */
-
+/*CHARACTER COUNTER*/
 .counter {
     margin: 8px 0 0;
-
     color: var(--color-text-secondary);
     font-family: var(--font-accent);
     font-size: 0.7rem;
@@ -164,17 +126,11 @@
 }
 
 
-/* =========================
-   MESSAGES
-========================= */
-
-.error,
-.success {
+/*MESSAGES*/
+.error, .success {
     margin: 0;
     padding: var(--spacing-sm) var(--spacing-md);
-
     border-radius: var(--radius-sm);
-
     font-size: 0.85rem;
 }
 
@@ -191,26 +147,18 @@
 }
 
 
-/* =========================
-   SUBMIT BUTTON
-========================= */
-
+/*SUBMIT BUTTON*/
 .submitButton {
     width: 100%;
     margin-top: 4px;
     padding: 16px;
-
     color: var(--color-text-light);
     background: var(--color-secondary);
-
     border: 0;
     border-radius: var(--radius-full);
-
     cursor: pointer;
-
     font-family: var(--font-body);
     font-weight: var(--weight-bold);
-
     transition:
         background 0.2s ease,
         transform 0.2s ease,
@@ -219,9 +167,7 @@
 
 .submitButton:hover {
     background: var(--color-secondary-hover);
-
     box-shadow: var(--shadow-md);
-
     transform: translateY(-2px);
 }
 
@@ -236,22 +182,14 @@
 }
 
 
-/* =========================
-   FOCUS
-========================= */
-
-.starButton:focus-visible,
-.submitButton:focus-visible,
-.textarea:focus-visible {
+/*FOCUS*/
+.starButton:focus-visible, .submitButton:focus-visible, .textarea:focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
 }
 
 
-/* =========================
-   LOGIN MESSAGE
-========================= */
-
+/*LOGIN MESSAGE*/
 .loginMessage {
     color: var(--color-text-secondary);
     font-size: 0.9rem;
@@ -262,14 +200,10 @@
 }
 
 
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE*/
 @media (max-width: 560px) {
 
-    .formBox,
-    .loginMessage {
+    .formBox, .loginMessage {
         padding: 24px;
     }
 

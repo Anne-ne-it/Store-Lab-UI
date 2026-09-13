@@ -1,20 +1,25 @@
-/*FOOTER importa estilos css desde './Footer.module.css' y crea la función Footer para renderizar el pie de página*/
+import styles from './Footer.module.css'; //Importa los estilos CSS específicos para este componente utilizando módulos CSS de React
 
-import styles from './Footer.module.css';
-
+// Define el componente funcional 'Footer'
 function Footer() {
     return (
         <footer className={styles.footer}>
+            {/*Sección contenedora principal para mostrar la lista de beneficios*/}
             <section className={styles.benefits}>
 
+                {/*Primer beneficio: Pasión por el mar*/}
                 <div>
+                    {/*Ícono o símbolo decorativo*/}
                     <span>〰</span>
                     <div>
+                        {/*Título en negrita del beneficio*/}
                         <strong>Pasión por el mar</strong>
+                        {/*Descripción breve*/}
                         <p>Vivimos lo que vendemos.</p>
                     </div>
                 </div>
 
+                {/*Segundo beneficio: Calidad garantizada*/}
                 <div>
                     <span>◇</span>
                     <div>
@@ -23,6 +28,7 @@ function Footer() {
                     </div>
                 </div>
 
+                {/*Tercer beneficio: Envíos rápido */}
                 <div>
                     <span>▱</span>
                     <div>
@@ -31,11 +37,11 @@ function Footer() {
                     </div>
                 </div>
 
+                {/*Cuarto beneficio: Atención personalizada*/}
                 <div>
                     <span>☺</span>
                     <div>
                         <strong>Atención personalizada</strong>
-                        <p>Estamos aquí para ayudarte.</p>
                     </div>
                 </div>
 
@@ -44,4 +50,4 @@ function Footer() {
     )
 }
 
-export default Footer;
+export default Footer; //Exporta el componente para que pueda ser importado y usado en otros archivos de la aplicación

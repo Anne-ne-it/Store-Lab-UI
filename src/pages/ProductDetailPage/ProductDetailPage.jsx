@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react" // Importa hooks de React para gestionar efectos y el estado local del detalle del producto
+import { useParams } from "react-router-dom" // Importa useParams para leer el id del producto desde la URL
+import { useDispatch, useSelector } from "react-redux" // Importa hooks de Redux para leer estado y despachar acciones
 
 import {
   fetchWishlist,
   toggleWishlist,
-} from "../../store/wishlistSlice.js"
-import { addCartItem } from "../../store/cartSlice.js"
-import { createReview } from "../../api/reviews.js"
-import { getProductById } from "../../api/products.js"
-import { useProduct } from "../../hooks/UseProduct.js"
-import StarRating from "../../components/StarRating/StarRating.jsx"
-import ReviewList from "../../components/ReviewList/ReviewList.jsx"
-import ReviewForm from "../../components/ReviewForm/ReviewForm.jsx"
-import styles from "./ProductDetailPage.module.css"
+} from "../../store/wishlistSlice.js" // Importa acciones para cargar y alternar la wishlist del usuario
+import { addCartItem } from "../../store/cartSlice.js" // Importa la acción para añadir productos al carrito
+import { createReview } from "../../api/reviews.js" // Importa la función que crea reseñas para un producto, aunque no se usa directamente aquí
+import { getProductById } from "../../api/products.js" // Importa la consulta para volver a cargar un producto tras publicar una reseña
+import { useProduct } from "../../hooks/UseProduct.js" // Importa el hook que obtiene el producto concreto por id
+import StarRating from "../../components/StarRating/StarRating.jsx" // Importa el componente de estrellas para valorar el producto
+import ReviewList from "../../components/ReviewList/ReviewList.jsx" // Importa la lista de reseñas del producto
+import ReviewForm from "../../components/ReviewForm/ReviewForm.jsx" // Importa el formulario para añadir una reseña
+import styles from "./ProductDetailPage.module.css" // Importa los estilos del detalle de producto
 
-function ProductDetailPage() {
-  const { productId } = useParams()
-  const dispatch = useDispatch()
-  const { product, loading, error } = useProduct(productId)
+function ProductDetailPage() { // Define la página que muestra toda la información detallada del producto
+  const { productId } = useParams() // Obtiene el id del producto desde la URL
+  const dispatch = useDispatch() // Permite ejecutar acciones Redux como guardar favoritos o añadir al carrito
+  const { product, loading, error } = useProduct(productId) // Obtiene el producto, su estado de carga y posibles errores
 
-  const { productIds } = useSelector((state) => state.wishlist)
-  const token = useSelector((state) => state.auth.token)
+  const { productIds } = useSelector((state) => state.wishlist) // Lee los IDs de los productos favoritos
+  const token = useSelector((state) => state.auth.token) // Lee si el usuario tiene sesión activa
 
-  const [reviewsVersion, setReviewsVersion] = useState(0)
+  const [reviewsVersion, setReviewsVersion] = useState(0) // Guarda una versión para forzar la recarga de las reseñas tras publicar una nueva
 
-  useEffect(() => {
+  useEffect(() => { // Al cambiar el token, carga la wishlist del usuario si está autenticado
     if (token) {
       dispatch(fetchWishlist())
     }
   }, [dispatch, token])
 
-  if (loading) {
+  if (loading) { // Si la información del producto todavía se está cargando, muestra un estado de espera
     return (
       <main className={styles.ProductDetailPage}>
         <p>Cargando producto...</p>
@@ -39,7 +39,7 @@ function ProductDetailPage() {
     )
   }
 
-  if (error || !product) {
+  if (error || !product) { // Si hubo error o no existe el producto, muestra la vista 404 de producto no encontrado
     return (
       <main className={styles.ProductDetailPage}>
         <div className={styles.error}>
@@ -52,8 +52,8 @@ function ProductDetailPage() {
     )
   }
 
-  const isFavorite = productIds.includes(product.id)
-  const productRating = Number(
+  const isFavorite = productIds.includes(product.id) // Comprueba si el producto actual ya está guardado como favorito
+  const productRating = Number( // Obtiene la valoración del producto desde distintas claves posibles del backend
     product?.rating ??
     product?.averageRating ??
     product?.avgRating ??
@@ -67,7 +67,7 @@ function ProductDetailPage() {
     0
   )
 
-  const handleToggleWishlist = () => {
+  const handleToggleWishlist = () => { // Alterna el producto en favoritos con comprobación de login
     if (!token) {
       window.alert("Debes iniciar sesión para guardar favoritos")
       return
@@ -76,7 +76,7 @@ function ProductDetailPage() {
     dispatch(toggleWishlist(product.id))
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = () => { // Añade el producto al carrito con una unidad, comprobando si hay sesión
     if (!token) {
       window.alert("Debes iniciar sesión para comprar")
       return
@@ -90,16 +90,16 @@ function ProductDetailPage() {
     )
   }
 
-  const handleReviewCreated = async () => {
+  const handleReviewCreated = async () => { // Cuando se publica una reseña, vuelve a cargar el producto para refrescar valoraciones
     const refreshedProduct = await getProductById(product.id)
-    setProduct(refreshedProduct)
-    setReviewsVersion((version) => version + 1)
+    setProduct(refreshedProduct) // Guarda el producto actualizado en el estado local, si existiese; si no, no se usaría exactamente aquí
+    setReviewsVersion((version) => version + 1) // Incrementa la versión para forzar re-render de la lista de reseñas
   }
 
   return (
-    <main className={styles.ProductDetailPage}>
-      <section className={styles.product}>
-        <div className={styles.imageContainer}>
+    <main className={styles.ProductDetailPage}> // Contenedor principal del detalle del producto
+      <section className={styles.product}> // Sección con imagen, información y acciones del producto
+        <div className={styles.imageContainer}> // Bloque de la imagen principal
           {product.image ? (
             <img
               className={styles.productImage}
@@ -109,7 +109,7 @@ function ProductDetailPage() {
           ) : null}
         </div>
 
-        <div className={styles.productInfo}>
+        <div className={styles.productInfo}> // Panel con nombre, categoría, precio, valoración y descripción
           <span className={styles.productCategory}>
             {product.category}
           </span>
@@ -131,7 +131,7 @@ function ProductDetailPage() {
             {Number(product.price).toFixed(2)} €
           </p>
 
-          <div className={styles.actions}>
+          <div className={styles.actions}> // Botones de compra y favoritos
             <button
               type="button"
               className={styles.buyButton}
@@ -164,7 +164,7 @@ function ProductDetailPage() {
         </div>
       </section>
 
-      <section className={styles.reviewsSection}>
+      <section className={styles.reviewsSection}> // Sección de reseñas del producto
         <ReviewList
           key={reviewsVersion}
           productId={product.id}

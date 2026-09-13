@@ -1,223 +1,168 @@
-StoreLab UI
+# StoreLab UI
 
-Frontend de StoreLab, una tienda online de surf y skate construida con React, Vite y Redux Toolkit. La interfaz utiliza un sistema de componentes reutilizables organizados por funcionalidad.
+StoreLab UI es el frontend de una tienda online especializada en surf, skate y cultura urbana. La aplicación está construida con React + Vite y conecta con un backend real para gestionar autenticación, catálogo, carrito, wishlist, reseñas y panel de administración.
 
+## Descripción del proyecto
 
-Características
+La aplicación permite:
 
-•
-Catálogo de productos con listado, categorías y detalle individual.
+- Explorar productos por categoría y ver detalle individual.
+- Registrar e iniciar sesión como usuario.
+- Gestionar un carrito con cantidades y resumen del pedido.
+- Guardar productos en favoritos.
+- Dejar reseñas con valoración.
+- Acceder a un panel de administración para gestionar productos y usuarios.
+- Visualizar una experiencia de compra moderna y responsive.
 
-•
-Autenticación mediante registro, inicio de sesión y sesión persistida en localStorage.
+## Stack tecnológico
 
-•
-Rutas privadas para carrito, wishlist, perfil y checkout.
+- React 19
+- Vite 8
+- React Router DOM
+- Redux Toolkit
+- Axios
+- Lucide React
+- CSS Modules
+- ESLint
 
-•
-Carrito de compra gestionado con Redux Toolkit.
+## Funcionalidades principales
 
-•
-Wishlist gestionada con Redux Toolkit.
+- Catálogo de productos con diseño responsive.
+- Búsqueda y visualización por categorías.
+- Páginas de detalle de producto.
+- Gestión de sesión y autenticación.
+- Carrito persistente en localStorage.
+- Wishlist con integración de Redux.
+- Reseñas y valoración media de productos.
+- Panel de administración para catálogo y usuarios.
+- Integración con backend real mediante API REST.
 
-•
-Reseñas de productos para usuarios autenticados.
+## Requisitos previos
 
-•
-Interceptor Axios para adjuntar automáticamente el token Bearer.
+- Node.js 18 o superior
+- npm 9 o superior
+- Backend StoreLab en ejecución o desplegado
 
-•
-Diseño responsive para escritorio, tablet y móvil.
+Comprueba tu entorno con:
 
-•
-CSS Modules para encapsular los estilos de cada componente y página.
-
-•
-Sistema de tokens visuales centralizado en src/styles/variables.css.
-
-•
-Panel de administración preparado como extensión opcional mediante la ruta /admin.
-
-Tecnologías
-
-React: Construcción de la interfaz y componentes
-Vite: Desarrollo local, HMR y build de producción
-React Router: Navegación y protección de rutas
-Redux Toolkit: Estado global de autenticación, carrito y wishlist
-Axios: Cliente HTTP con interceptor de autenticación
-Fetch API: Consultas de productos y reseñas
-Lucide React: Iconos de la interfaz
-CSS Modules:  Estilos aislados por componente
-ESLint: Revisión estática del código
-
-
-
-
-Requisitos
-
-• Node.js 18 o superior.
-
-• npm 9 o superior.
-
-• Un backend StoreLab ejecutándose localmente o publicado.
-
-Comprueba las versiones instaladas con:
-
-Bash
+```bash
 node --version
 npm --version
+```
 
+## Instalación
 
+1. Clona el repositorio:
 
-Instalación
+2. Instala las dependencias:
 
-Clona el repositorio y entra en la carpeta del frontend:
-
-Bash
-git clone <URL_DEL_REPOSITORIO>
-cd Store-Lab-UI
-
-
-
-Instala las dependencias:
-
-Bash
+```bash
 npm install
+```
 
+3. Configura las variables de entorno creando un archivo `.env` en la raíz del proyecto:
 
-
-Crea un archivo .env en la raíz del proyecto:
-
-Plain Text
+```env
 VITE_API_URL=http://localhost:3000
+```
 
+> Nota: la URL debe apuntar al backend sin incluir `/api` al final. El frontend agrega esa ruta internamente cuando hace las llamadas.
 
+4. Inicia la aplicación en modo desarrollo:
 
-Inicia el servidor de desarrollo:
-
-Bash
+```bash
 npm run dev
+```
 
+La app suele estar disponible en:
 
-
-Vite mostrará la URL local, normalmente:
-
-Plain Text
+```text
 http://localhost:5173
+```
 
+## Scripts disponibles
 
-
-Variables de entorno
-
-Variable: VITE_API_URL
-Obligatoria: Sí en entornos no locales
-Ejemplo: http://localhost:3000
-Descripción: URL base del backend, sin /api al final
-
-
-
-
-El frontend usa http://localhost:3000 como valor predeterminado si VITE_API_URL no está definida.
-
-La URL debe configurarse así:
-
-Plain Text
-VITE_API_URL=http://localhost:3000
-
-
-No la configures así:
-
-Plain Text
-VITE_API_URL=http://localhost:3000/api
-
-
-
-El código añade /api automáticamente en los módulos que lo necesitan.
-
-
-Scripts disponibles
-
-Bash
-npm run dev       # Inicia Vite en modo desarrollo
-npm run build     # Genera la versión de producción en dist/
-npm run preview   # Sirve localmente el build de producción
-npm run lint      # Ejecuta ESLint
-
-
-
-Flujo recomendado antes de publicar:
-
-Bash
-npm run lint
+```bash
+npm run dev
 npm run build
 npm run preview
+npm run lint
+```
 
+### Descripción de cada script
 
+- `npm run dev`: inicia el entorno de desarrollo con Vite.
+- `npm run build`: genera el build de producción en la carpeta `dist`.
+- `npm run preview`: sirve el build para comprobar la versión final localmente.
+- `npm run lint`: analiza el código con ESLint.
 
-Estructura del proyecto
+## Variables de entorno
 
-Plain Text
+| Variable | Requerida | Descripción |
+| --- | --- | --- |
+| `VITE_API_URL` | Sí | URL base del backend, por ejemplo `http://localhost:3000` |
+
+## Estructura del proyecto
+
+```text
 Store-Lab-UI/
-├── public/                         # Activos públicos pequeños, si existen
 ├── src/
-│   ├── api/                        # Funciones de comunicación con el backend
-│   │   ├── auth.js                 # Registro, login y usuario actual
-│   │   ├── axios.js                # Cliente Axios e interceptor Bearer
-│   │   ├── cart.js                 # Operaciones relacionadas con carrito
-│   │   ├── products.js             # Listado y detalle de productos
-│   │   ├── reviews.js              # Lectura y creación de reseñas
-│   │   └── wishlist.js             # Operaciones de wishlist
-│   ├── components/                 # Componentes reutilizables
-│   │   ├── Button/
-│   │   ├── CartItem/
-│   │   ├── CartSummary/
-│   │   ├── Footer/
-│   │   ├── FormInput/
-│   │   ├── Header/
-│   │   ├── Layout/
-│   │   ├── PrivateRoute/
-│   │   ├── ProductCard/
-│   │   ├── ProductGrid/
-│   │   ├── ReviewForm/
-│   │   ├── ReviewList/
-│   │   ├── StarRating/
-│   │   └── WishlistButton/
-│   ├── data/
-│   │   └── mockProducts.js         # Datos de apoyo para desarrollo
-│   ├── hooks/                      # Hooks de acceso y carga de datos
-│   │   ├── UseProduct.js
-│   │   ├── UseProducts.js
-│   │   └── UseReviews.js
-│   ├── pages/                      # Vistas asociadas a rutas
-│   │   ├── CartPage/
-│   │   ├── CheckoutSuccesPage/
-│   │   ├── HomePage/
-│   │   ├── LoginPage/
-│   │   ├── NotFoundPage/
-│   │   ├── ProductDetailPage/
-│   │   ├── ProductsPage/
-│   │   ├── ProfilePage/
-│   │   ├── RegistrerPage/
-│   │   └── WishlistPage/
-│   ├── router/
-│   │   └── index.jsx                # Router y rutas privadas
-│   ├── store/
-│   │   ├── authSlice.js             # Usuario, token, login y registro
-│   │   ├── cartSlice.js              # Estado del carrito
-│   │   ├── index.js                  # Configuración del store
-│   │   └── wishlistSlice.js          # Estado de favoritos
-│   ├── styles/
-│   │   ├── index.css                # Reset y estilos globales
-│   │   └── variables.css            # Design tokens StoreLab
+│   ├── api/                 # Llamadas HTTP al backend
+│   ├── components/          # Componentes reutilizables
+│   ├── data/                # Datos de prueba / mock
+│   ├── hooks/               # Hooks personalizados
+│   ├── pages/               # Páginas principales de la app
+│   ├── router/              # Configuración de rutas
+│   ├── store/               # Redux slices y store global
+│   ├── styles/              # Variables y estilos globales
 │   ├── App.jsx
-│   └── main.jsx                     # Punto de entrada y Provider Redux
-├── .env                             # Variables locales, no subir a Git
+│   ├── main.jsx
+│   └── ...
+├── .env
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
 ├── package.json
-├── package-lock.json
-└── vite.config.js
+├── vite.config.js
+├── README.md
+└── dist/                   # Build generado
+```
+
+## Rutas principales
+
+- `/` — Home
+- `/products` — Catálogo
+- `/products/:id` — Detalle de producto
+- `/cart` — Carrito
+- `/wishlist` — Productos favoritos
+- `/profile` — Perfil del usuario
+- `/login` — Inicio de sesión
+- `/register` — Registro
+- `/admin` — Panel de administración
+
+## Panel de administración
+
+El proyecto incluye una zona privada para gestión del negocio, con acceso restringido a usuarios administradores. Desde ahí se puede:
+
+- Gestionar productos
+- Crear, editar y eliminar productos
+- Gestionar usuarios
+- Acceder a vistas internas del negocio
+
+
+## Recomendación previa a despliegue
+
+Antes de publicar la aplicación conviene ejecutar:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Autor
+
+Ane Amiano Ibero, The Bridge Student. Proyecto StoreLab Backend.
+
 
 
 
@@ -637,8 +582,3 @@ Node version
 18 o superior
 Variable
 VITE_API_URL=https://tu-backend.com
-
-
-
-
-Si utilizas rutas de React Router, configura el hosting para devolver index.html como fallback en las rutas que no correspondan a un archivo físico.

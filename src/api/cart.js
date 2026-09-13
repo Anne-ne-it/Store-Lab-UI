@@ -1,11 +1,11 @@
-import apiClient from './axios'; //Importa la instancia cliente de Axios personalizada para realizar las peticiones a la API
+import apiClient from './axios'; // Importa la instancia de Axios ya configurada para hablar con el backend y enviar cookies/headers correctos
 
-export async function getCart() { //Función asíncrona para obtener el contenido completo del carrito de compras del usuario
-  const response = await apiClient.get('/cart'); //Realiza una petición GET a la ruta '/cart'
-  return response.data.data; //Devuelve únicamente la información del carrito contenida en la propiedad 'data.data'
+export async function getCart() { // Exporta una función asíncrona para recuperar el contenido actual del carrito del usuario
+  const response = await apiClient.get('/cart'); // Hace una petición GET al endpoint /cart para pedir los productos del carrito
+  return response.data.data; // Devuelve la parte útil de la respuesta, normalmente la estructura del carrito dentro de response.data.data
 }
 
-export async function addCartItem(productId, quantity = 1) { //Función asíncrona para añadir un nuevo producto (o incrementar su cantidad) al carrito
-  const response = await apiClient.post('/cart/items', { productId, quantity }); //Realiza una petición POST enviando el ID del producto y la cantidad (por defecto 1 si no se indica)
-  return response.data.data; //Devuelve los datos actualizados del ítem o del carrito retornados por el servidor
+export async function addCartItem(productId, quantity = 1) { // Exporta una función asíncrona para añadir un producto al carrito o incrementar su cantidad
+  const response = await apiClient.post('/cart/items', { productId, quantity }); // Envía un POST a /cart/items con el ID del producto y la cantidad deseada
+  return response.data.data; // Devuelve la información actualizada del carrito o del producto añadido desde el backend
 }

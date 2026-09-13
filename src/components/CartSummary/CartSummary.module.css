@@ -1,4 +1,6 @@
 .box {
+    position: sticky;
+    top: var(--spacing-xl);
     padding: var(--spacing-lg);
 
     color: var(--color-text-main);
@@ -112,8 +114,6 @@
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
 }
-
-/* StoreLab visual system: aligned with src/styles/variables.css */
 
 .button {
   border-radius: var(--radius-full);

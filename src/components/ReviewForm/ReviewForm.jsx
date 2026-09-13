@@ -1,62 +1,61 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useState } from "react" //Importa useState para gestionar los datos del formulario de reseñas
+import { useSelector } from "react-redux" //Importa useSelector para comprobar si hay sesión activa del usuario
+import { createReview } from "../../api/reviews" //Importa la función que crea una reseña en la API
+import styles from "./ReviewForm.module.css" //Importa los estilos del formulario
 
-import { createReview } from "../../api/reviews"
-import styles from "./ReviewForm.module.css"
+function ReviewForm({ productId, onReviewCreated }) { //Define el formulario para valorar un producto y dejar un comentario
+  const token = useSelector((state) => state.auth.token) //Lee el token para saber si el usuario está autenticado
 
-function ReviewForm({ productId, onReviewCreated }) {
-  const token = useSelector((state) => state.auth.token)
+  const [rating, setRating] = useState(0) //Guarda la puntuación seleccionada del usuario
+  const [comment, setComment] = useState("") //Guarda el texto del comentario
+  const [error, setError] = useState("") //Guarda errores de validación del formulario
+  const [success, setSuccess] = useState("") //Guarda mensajes de éxito cuando la reseña se publica
+  const [loading, setLoading] = useState(false) //Controla si se está enviando la reseña
 
-  const [rating, setRating] = useState(0)
-  const [comment, setComment] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
-  const [loading, setLoading] = useState(false)
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    setError("")
+  const handleSubmit = async (event) => { //Se ejecuta al enviar el formulario de reseña
+    event.preventDefault() //Evita el refresco de la página por el navegador
+    setError("") //Borra errores previos antes de validar
     setSuccess("")
 
-    if (!rating) {
+    if (!rating) { //Si el usuario no ha elegido estrellas, bloquea el envío
       setError("Selecciona una valoración")
       return
     }
 
-    if (!comment.trim()) {
+    if (!comment.trim()) { //Si el comentario está vacío, bloquea el envío
       setError("Escribe un comentario")
       return
     }
 
-    if (comment.trim().length < 10) {
+    if (comment.trim().length < 10) { //Si el comentario es demasiado corto, pide más detalle
       setError("El comentario debe tener al menos 10 caracteres")
       return
     }
 
     try {
-      setLoading(true)
+      setLoading(true) //Activa el estado de carga mientras se envía la reseña
 
-      const review = await createReview({
+      const review = await createReview({ //Envía la nueva opinión al backend
         productId,
         rating,
         comment: comment.trim(),
       })
 
-      setRating(0)
-      setComment("")
-      setSuccess("Tu reseña se ha publicado correctamente")
+      setRating(0) //Reinicia la valoración tras publicarla
+      setComment("") //Vacía el campo del comentario
+      setSuccess("Tu reseña se ha publicado correctamente") //Muestra éxito al usuario
 
-      if (onReviewCreated) {
+      if (onReviewCreated) { //Si el componente padre necesita refrescar la lista, le pasa la reseña nueva
         onReviewCreated(review)
       }
     } catch (error) {
-      setError(error.message)
+      setError(error.message) //Muestra el error del backend o de validación
     } finally {
-      setLoading(false)
+      setLoading(false) //Desactiva el estado de carga siempre, tanto si hubo éxito como si no
     }
   }
 
-  if (!token) {
+  if (!token) { //Si no hay sesión activa, no permite publicar reseñas 
     return (
       <section className={styles.loginMessage}>
         <p>
@@ -96,7 +95,6 @@ function ReviewForm({ productId, onReviewCreated }) {
         </fieldset>
 
         <label className={styles.commentLabel}>
-          Comentario
           <textarea
             className={styles.textarea}
             value={comment}
@@ -108,16 +106,16 @@ function ReviewForm({ productId, onReviewCreated }) {
         </label>
 
         <p className={styles.counter}>
-          {comment.length}/500
+          {comment.length} / 500 caracteres
         </p>
 
-        {error && (
+        {error && ( //Muestra el error si existe
           <p className={styles.error} role="alert">
             {error}
           </p>
         )}
 
-        {success && (
+        {success && ( //Muestra el mensaje de éxito si la reseña se ha publicado
           <p className={styles.success} role="status">
             {success}
           </p>
@@ -135,4 +133,4 @@ function ReviewForm({ productId, onReviewCreated }) {
   )
 }
 
-export default ReviewForm
+export default ReviewForm //Exporta el componente para poder usarlo en la página de detalle del producto y otras vistas que permitan reseñas

@@ -1,11 +1,11 @@
-import { useReviews } from "../../hooks/useReviews";
-import StarRating from "../StarRating/StarRating";
-import styles from "./ReviewList.module.css";
+import { useReviews } from "../../hooks/useReviews.js"; //Importa el hook para obtener las reseñas de un producto concreto
+import StarRating from "../StarRating/StarRating"; //Importa el componente para mostrar la valoración con estrellas
+import styles from "./ReviewList.module.css"; //Importa los estilos del listado de reseñas
 
-function ReviewList({ productId }) {
-  const { reviews, loading, error } = useReviews(productId);
+function ReviewList({ productId }) { //Define el componente que muestra todas las reseñas de un producto
+  const { reviews, loading, error } = useReviews(productId); //Obtiene reseñas, estado de carga y errores desde el hook
 
-  if (loading) {
+  if (loading) { //Si aún se están cargando las reseñas, muestra un mensaje de espera
     return (
       <section className={styles.section}>
         <h2 className={styles.title}>Opiniones de la comunidad</h2>
@@ -14,7 +14,7 @@ function ReviewList({ productId }) {
     );
   }
 
-  if (error) {
+  if (error) { //Si la petición falla, muestra el error para que el usuario lo vea
     return (
       <section className={styles.section}>
         <h2 className={styles.title}>Opiniones de la comunidad</h2>
@@ -36,7 +36,7 @@ function ReviewList({ productId }) {
         </span>
       </div>
 
-      {reviews.length === 0 ? (
+      {reviews.length === 0 ? ( //Si no hay reseñas para ese producto, muestra un estado vacío
         <div className={styles.empty}>
           <p>Este producto todavía no tiene reseñas.</p>
           <small>Sé la primera persona en compartir tu experiencia.</small>
@@ -82,4 +82,4 @@ function ReviewList({ productId }) {
   );
 }
 
-export default ReviewList;
+export default ReviewList; //Exporta el componente por defecto para poder utilizarlo en la vista de detalle del producto

@@ -1,0 +1,276 @@
+.page {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.eyebrow {
+  margin-bottom: var(--spacing-sm);
+  color: #ffffff;
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.header h1 {
+  margin-bottom: var(--spacing-sm);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #ffffff;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
+}
+
+.tableCard,
+.empty,
+.status,
+.error {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+}
+
+.tableCard {
+  overflow: hidden;
+}
+
+.tableHeader,
+.row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) minmax(220px, 1.5fr) 0.8fr minmax(160px, 1fr);
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.tableHeader {
+  color: var(--color-text-secondary);
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.row {
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-family: var(--font-titles);
+  font-weight: var(--weight-bold);
+}
+
+.userCell strong {
+  display: block;
+  overflow: hidden;
+  color: #111111;
+  font-family: var(--font-titles);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userCell small {
+  display: block;
+  margin-top: var(--spacing-xs);
+  color: rgba(17, 17, 17, 0.75);
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+}
+
+.email,
+.role {
+  color: #111111;
+}
+
+.role {
+  justify-self: start;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.editFields,
+.roleField {
+  display: flex;
+  align-items: center;
+}
+
+.editFields input,
+.roleField select {
+  width: 100%;
+  min-height: 42px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  color: #111111;
+  font: inherit;
+}
+
+.editButton,
+.saveButton,
+.cancelButton,
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  min-height: 42px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-family: var(--font-titles);
+  font-size: 0.75rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.editButton {
+  color: var(--color-primary);
+  background: rgba(23, 107, 99, 0.1);
+  border: 1px solid var(--glass-border-dark);
+}
+
+.saveButton {
+  color: var(--color-text-light);
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.cancelButton {
+  color: var(--color-text-main);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--glass-border);
+}
+
+.deleteButton {
+  color: var(--color-secondary-hover);
+  background: rgba(229, 111, 81, 0.1);
+  border: 1px solid rgba(229, 111, 81, 0.28);
+}
+
+.editButton:hover,
+.saveButton:hover,
+.cancelButton:hover,
+.deleteButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.editButton:hover {
+  background: rgba(23, 107, 99, 0.16);
+}
+
+.saveButton:hover {
+  background: var(--color-primary-hover);
+}
+
+.cancelButton:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.deleteButton:hover {
+  background: rgba(229, 111, 81, 0.18);
+}
+
+.editButton:disabled,
+.saveButton:disabled,
+.cancelButton:disabled,
+.deleteButton:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.empty,
+.status,
+.error {
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.empty h2 {
+  margin-bottom: var(--spacing-sm);
+  color: #ffffff;
+}
+
+.empty p,
+.status {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.error {
+  margin-bottom: var(--spacing-md);
+  color: #ffffff;
+  background: rgba(229, 111, 81, 0.14);
+  border-color: rgba(229, 111, 81, 0.28);
+}
+
+@media (max-width: 800px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .userCell {
+    grid-column: 1 / -1;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}

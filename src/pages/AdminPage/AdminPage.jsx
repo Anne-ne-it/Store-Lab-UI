@@ -19,11 +19,11 @@ function AdminPage() {
           <h2>Productos</h2>
           <p>Crear, editar y retirar productos del catálogo.</p>
         </Link>
-        <article className={styles.card}>
+        <Link className={styles.card} to="/admin/users">
           <span className={styles.number}>02</span>
           <h2>Usuarios</h2>
           <p>Consulta y administra las cuentas y roles de StoreLab.</p>
-        </article>
+        </Link>
         <article className={styles.card}>
           <span className={styles.number}>03</span>
           <h2>Pedidos</h2>

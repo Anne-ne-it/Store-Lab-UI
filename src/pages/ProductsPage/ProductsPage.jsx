@@ -1,27 +1,27 @@
-import { useState } from "react"
-import { useSearchParams } from "react-router-dom"
-import { useProducts } from "../../hooks/UseProducts.js"
-import ProductGrid from "../../components/ProductGrid/ProductGrid.jsx"
-import styles from "./ProductsPage.module.css"
+import { useState } from "react" // Importa useState para guardar el valor de búsqueda del usuario en la vista del catálogo
+import { useSearchParams } from "react-router-dom" // Importa useSearchParams para leer filtros desde la URL, por ejemplo category
+import { useProducts } from "../../hooks/UseProducts.js" // Importa el hook para obtener la lista de productos desde la API
+import ProductGrid from "../../components/ProductGrid/ProductGrid.jsx" // Importa la grilla que renderiza las tarjetas de productos
+import styles from "./ProductsPage.module.css" // Importa los estilos de la página de catálogo
 
-function ProductsPage() {
-  const { products, loading, error } = useProducts()
-  const [searchParams] = useSearchParams()
-  const [search, setSearch] = useState("")
-  const category = searchParams.get("category")
+function ProductsPage() { // Define la vista que muestra todos los productos filtrables por categoría y búsqueda
+  const { products, loading, error } = useProducts() // Obtiene la lista de productos y su estado de carga/error
+  const [searchParams] = useSearchParams() // Lee los parámetros de la URL, como ?category=surf
+  const [search, setSearch] = useState("") // Guarda el texto escrito por el usuario en el buscador
+  const category = searchParams.get("category") // Extrae la categoría activa desde la URL para filtrar productos
 
-  const categoryProducts = category
+  const categoryProducts = category // Aplica el filtro por categoría si existe en la URL
     ? products.filter(
         (product) =>
           product.category.toLowerCase() === category.toLowerCase() ||
           (category.toLowerCase() === "accesorios" &&
             product.category.toLowerCase().startsWith("accesorios"))
       )
-    : products
+    : products // Si no hay categoría, muestra todos los productos
 
-  const visibleProducts = !search.trim()
+  const visibleProducts = !search.trim() // Si la barra de búsqueda está vacía, muestra el catálogo filtrado
     ? categoryProducts
-    : categoryProducts.filter((product) => {
+    : categoryProducts.filter((product) => { // Si hay texto escrito, busca por nombre, título o categoría
         const query = search.toLowerCase().trim()
 
         return (
@@ -31,7 +31,7 @@ function ProductsPage() {
         )
       })
 
-  if (loading) {
+  if (loading) { // Si la carga de productos está en curso, muestra un mensaje de espera
     return (
       <main className={styles.page}>
         <p className={styles.status}>Cargando productos...</p>
@@ -39,7 +39,7 @@ function ProductsPage() {
     )
   }
 
-  if (error) {
+  if (error) { // Si la API falla, muestra el error en pantalla
     return (
       <main className={styles.page}>
         <p className={styles.error}>{error}</p>
@@ -48,8 +48,8 @@ function ProductsPage() {
   }
 
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
+    <main className={styles.page}> // Contenedor principal de la página de catálogo
+      <header className={styles.header}> // Encabezado con título y marca del catálogo
         <p className={styles.eyebrow}>STORE LAB · SURF &amp; SKATE</p>
 
         <h1>
@@ -58,7 +58,7 @@ function ProductsPage() {
 
       </header>
 
-      <div className={styles.searchBox}>
+      <div className={styles.searchBox}> // Contenedor del buscador de productos
         <label htmlFor="catalog-search">Buscar productos</label>
         <input
           id="catalog-search"
@@ -69,14 +69,14 @@ function ProductsPage() {
         />
       </div>
 
-      {visibleProducts.length === 0 ? (
+      {visibleProducts.length === 0 ? ( // Si no hay productos tras aplicar filtros, muestra estado vacío
         <p className={styles.status}>
           {!search.trim()
             ? "No hay productos disponibles."
             : `No se encontraron productos que coincidan con "${search}".`}
         </p>
       ) : (
-        <ProductGrid products={visibleProducts} />
+        <ProductGrid products={visibleProducts} /> // Si hay productos, los renderiza en la grilla
       )}
     </main>
   )

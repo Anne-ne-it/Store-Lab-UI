@@ -2,6 +2,17 @@ import styles from "./CartItem.module.css" //Importa los estilos en CSS Modules 
 
 function CartItem({ item, onAdd, onRemove, onDecrease }) { //Declara el componente funcional CartItem recibiendo sus props mediante desestructuración
   const product = item.product || item //Garantiza el acceso al objeto del producto (ya sea item.product o el propio item)
+  const productImage =
+    product.image ??
+    product.imageUrl ??
+    product.img ??
+    product.thumbnail ??
+    product.cover ??
+    product.images?.[0]?.url ??
+    product.images?.[0] ??
+    product.media?.[0]?.url ??
+    product.media?.[0] ??
+    ""
   const quantity = Number(item.quantity) || 1 //Convierte la cantidad a número; si no existe o es inválida, asigna 1 por defecto
   const price = Number(product.price) || 0 //Convierte el precio a número; si no existe o es inválido, asigna 0 por defecto
   const subtotal = price * quantity  //Calcula el subtotal multiplicando el precio por la cantidad de unidades
@@ -13,8 +24,8 @@ function CartItem({ item, onAdd, onRemove, onDecrease }) { //Declara el componen
       {/*Contenedor de la imagen del producto*/}
       <div className={styles.imageWrapper}>
         {/*Etiqueta de imagen con la URL del producto y el texto alternativo*/}
-        {product.image ? (
-          <img className={styles.image} src={product.image || undefined} alt={product.name} />
+        {productImage ? (
+          <img className={styles.image} src={productImage || undefined} alt={product.name} />
         ) : null}
       </div>
 
