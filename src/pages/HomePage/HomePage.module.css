@@ -466,80 +466,28 @@ margin-top: var(--spacing-md);
 
 
 /* =========================
-   SEARCH BOX
+   FAVORITES SECTION
 ========================= */
 
-.searchBox {
-    display: flex;
-    align-items: center;
+.favoritesSection {
+    margin-bottom: var(--spacing-xl);
+}
 
-    gap: var(--spacing-md);
+.favoriteEmpty {
+    width: 100%;
+    padding: var(--spacing-lg);
 
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-sm);
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-secondary);
 
     background: var(--glass-bg);
-
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
 
     border: 1px solid var(--glass-border);
-    border-radius: var(--radius-full);
-
-    box-shadow: var(--shadow-sm);
-}
-
-
-.searchBox label {
-    padding-left: var(--spacing-sm);
-
-    font-family: var(--font-accent);
-    font-size: 9px;
-    font-weight: var(--weight-bold);
-
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-
-    color: var(--color-primary);
-
-    white-space: nowrap;
-}
-
-
-.searchBox input {
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 10px 14px;
-
-    font-family: var(--font-body);
-    font-size: 13px;
-
-    color: var(--color-text-main);
-
-    background: rgba(255, 255, 255, 0.25);
-
-    border: 1px solid transparent;
-    border-radius: var(--radius-full);
-
-    outline: none;
-
-    transition:
-        background 0.2s ease,
-        border 0.2s ease;
-}
-
-
-.searchBox input::placeholder {
-    color: var(--color-text-secondary);
-}
-
-
-.searchBox input:focus {
-    background: rgba(255, 255, 255, 0.45);
-
-    border-color: var(--glass-border-dark);
+    border-radius: var(--radius-lg);
 }
 
 
@@ -627,30 +575,11 @@ margin-top: var(--spacing-md);
     }
 
 
-    .searchBox {
-        align-items: stretch;
-
-        flex-direction: column;
-
-        padding: var(--spacing-sm);
-
-        border-radius: var(--radius-lg);
-    }
-
-
-    .searchBox label {
-        padding-left: var(--spacing-xs);
-    }
-
-
-    .searchBox input {
-        width: 100%;
-    }
 }
 
 /* StoreLab visual system: aligned with src/styles/variables.css */
 
-.searchBox {
+.favoriteEmpty {
   background: var(--glass-bg-strong);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));

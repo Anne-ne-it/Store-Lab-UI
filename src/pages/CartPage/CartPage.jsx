@@ -27,6 +27,20 @@ function CartPage() {
     dispatch(removeCartItem(itemId))
   }
 
+  const handleDecrease = (item) => {
+    if (item.quantity <= 1) {
+      dispatch(removeCartItem(item.id))
+      return
+    }
+
+    dispatch(
+      addCartItem({
+        product: item.product,
+        quantity: -1,
+      })
+    )
+  }
+
   if (loading && items.length === 0) {
     return (
       <main className={styles.page}>
@@ -77,6 +91,7 @@ function CartPage() {
                   item={item}
                   onAdd={() => handleAdd(item)}
                   onRemove={handleRemove}
+                  onDecrease={() => handleDecrease(item)}
                 />
               ))}
             </section>

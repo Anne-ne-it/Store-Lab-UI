@@ -8,6 +8,7 @@ import {
 } from "../../store/wishlistSlice.js"
 import { addCartItem } from "../../store/cartSlice.js"
 import { createReview } from "../../api/reviews.js"
+import { getProductById } from "../../api/products.js"
 import { useProduct } from "../../hooks/UseProduct.js"
 import StarRating from "../../components/StarRating/StarRating.jsx"
 import ReviewList from "../../components/ReviewList/ReviewList.jsx"
@@ -52,6 +53,19 @@ function ProductDetailPage() {
   }
 
   const isFavorite = productIds.includes(product.id)
+  const productRating = Number(
+    product?.rating ??
+    product?.averageRating ??
+    product?.avgRating ??
+    product?.average_rating ??
+    product?.avg_rating ??
+    product?.promedio ??
+    product?.reviewSummary?.average ??
+    product?.reviewSummary?.rating ??
+    product?.reviews?.averageRating ??
+    product?.reviews?.[0]?.rating ??
+    0
+  )
 
   const handleToggleWishlist = () => {
     if (!token) {
@@ -76,7 +90,9 @@ function ProductDetailPage() {
     )
   }
 
-  const handleReviewCreated = () => {
+  const handleReviewCreated = async () => {
+    const refreshedProduct = await getProductById(product.id)
+    setProduct(refreshedProduct)
     setReviewsVersion((version) => version + 1)
   }
 
@@ -101,7 +117,7 @@ function ProductDetailPage() {
           </h1>
 
           <StarRating
-            rating={product.rating}
+            rating={productRating}
             showValue
           />
 

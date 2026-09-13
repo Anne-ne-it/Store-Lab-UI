@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import { useProducts } from "../../hooks/UseProducts.js"
 import ProductGrid from "../../components/ProductGrid/ProductGrid.jsx"
@@ -6,9 +7,10 @@ import styles from "./ProductsPage.module.css"
 function ProductsPage() {
   const { products, loading, error } = useProducts()
   const [searchParams] = useSearchParams()
+  const [search, setSearch] = useState("")
   const category = searchParams.get("category")
 
-  const visibleProducts = category
+  const categoryProducts = category
     ? products.filter(
         (product) =>
           product.category.toLowerCase() === category.toLowerCase() ||
@@ -16,6 +18,18 @@ function ProductsPage() {
             product.category.toLowerCase().startsWith("accesorios"))
       )
     : products
+
+  const visibleProducts = !search.trim()
+    ? categoryProducts
+    : categoryProducts.filter((product) => {
+        const query = search.toLowerCase().trim()
+
+        return (
+          product.name?.toLowerCase().includes(query) ||
+          product.title?.toLowerCase().includes(query) ||
+          product.category?.toLowerCase().includes(query)
+        )
+      })
 
   if (loading) {
     return (
@@ -47,8 +61,23 @@ function ProductsPage() {
         </p>
       </header>
 
+      <div className={styles.searchBox}>
+        <label htmlFor="catalog-search">Buscar productos</label>
+        <input
+          id="catalog-search"
+          type="text"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Busca por nombre o categoría..."
+        />
+      </div>
+
       {visibleProducts.length === 0 ? (
-        <p className={styles.status}>No hay productos disponibles.</p>
+        <p className={styles.status}>
+          {!search.trim()
+            ? "No hay productos disponibles."
+            : `No se encontraron productos que coincidan con "${search}".`}
+        </p>
       ) : (
         <ProductGrid products={visibleProducts} />
       )}

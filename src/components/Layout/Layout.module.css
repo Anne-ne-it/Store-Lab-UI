@@ -5,27 +5,6 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
-    /*FONDO BASE*/
-    background:
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(79, 153, 144, 0.45),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(229, 111, 81, 0.30),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 50% 85%,
-            rgba(244, 213, 141, 0.35),
-            transparent 32%
-        ),
-        var(--color-bg-main);
-
-    background-attachment: fixed;
 }
 
 

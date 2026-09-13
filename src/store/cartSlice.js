@@ -32,14 +32,21 @@ const cartSlice = createSlice({
         (item) => item.product.id === product.id
       )
 
-      if (existingItem) {
-        existingItem.quantity += quantity
-      } else {
+      if (!existingItem) {
         state.items.push({
           id: product.id,
           product,
-          quantity,
+          quantity: Math.max(quantity, 0),
         })
+        saveCart(state.items)
+        return
+      }
+
+      const nextQuantity = existingItem.quantity + quantity
+      if (nextQuantity <= 0) {
+        state.items = state.items.filter((item) => item.id !== product.id)
+      } else {
+        existingItem.quantity = nextQuantity
       }
 
       saveCart(state.items)

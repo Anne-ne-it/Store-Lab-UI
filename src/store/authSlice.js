@@ -12,18 +12,24 @@ function getSavedUser() {
   }
 }
 
+function normalizeUser(payload) {
+  return payload?.user ?? payload?.data?.user ?? payload?.data ?? null
+}
+
 async function authRequest(endpoint, credentials) {
   const response = await fetch(`${API_URL}${endpoint}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(credentials),
   })
 
-  const data = await response.json()
+  const data = await response.json().catch(() => ({}))
   if (!response.ok) {
-    throw new Error(data.message || "No se pudo completar la operación")
+    throw new Error(data.message || data.error || "No se pudo completar la operación")
   }
-  return data.data
+
+  return data.data ?? data
 }
 
 export const register = createAsyncThunk(
@@ -31,9 +37,13 @@ export const register = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const data = await authRequest("/api/auth/register", { email, password })
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
-      return data
+      const user = normalizeUser(data)
+      const token = data?.token || (user ? "cookie-authenticated" : null)
+
+      if (token) localStorage.setItem("token", token)
+      if (user) localStorage.setItem("user", JSON.stringify(user))
+
+      return { ...data, token, user }
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -45,18 +55,23 @@ export const login = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const data = await authRequest("/api/auth/login", { email, password })
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
-      return data
+      const user = normalizeUser(data)
+      const token = data?.token || (user ? "cookie-authenticated" : null)
+
+      if (token) localStorage.setItem("token", token)
+      if (user) localStorage.setItem("user", JSON.stringify(user))
+
+      return { ...data, token, user }
     } catch (error) {
       return rejectWithValue(error.message)
     }
   }
 )
 
+const savedUser = getSavedUser()
 const initialState = {
-  token: localStorage.getItem("token"),
-  user: getSavedUser(),
+  token: localStorage.getItem("token") || (savedUser ? "cookie-authenticated" : null),
+  user: savedUser,
   loading: false,
   error: null,
 }
@@ -85,8 +100,8 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false
-        state.token = action.payload.token
-        state.user = action.payload.user
+        state.token = action.payload.token || "cookie-authenticated"
+        state.user = action.payload.user ?? state.user
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false
@@ -98,8 +113,8 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false
-        state.token = action.payload.token
-        state.user = action.payload.user
+        state.token = action.payload.token || "cookie-authenticated"
+        state.user = action.payload.user ?? state.user
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false

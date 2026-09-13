@@ -3,7 +3,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 360px;
+    min-height: 300px;
     padding: var(--spacing-lg);
 
     /*Glassmorphism*/
@@ -79,24 +79,6 @@
     letter-spacing: -0.03em;
     text-transform: uppercase;
     color: var(--color-text-main);
-}
-
-
-/*DESCRIPTION*/
-.description {
-    position: relative;
-    margin-top: var(--spacing-md);
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: var(--weight-normal);
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-
-    /*Evita que cards con textos largos tengan alturas diferentes */
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 

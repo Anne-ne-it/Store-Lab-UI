@@ -1,7 +1,7 @@
 import styles from "./StarRating.module.css";
 
 function StarRating({ rating = 0, maxRating = 5, showValue = false }) {
-  const numericRating = Math.min( Math.max(Number(rating) || 0, 0), maxRating );
+  const numericRating = Math.min(Math.max(Number(rating) || 0, 0), maxRating);
 
   return (
     <div
@@ -12,16 +12,13 @@ function StarRating({ rating = 0, maxRating = 5, showValue = false }) {
         {Array.from({ length: maxRating }, (_, index) => {
           const starNumber = index + 1;
           const isFull = starNumber <= Math.floor(numericRating);
-          const isHalf =
-            !isFull && starNumber - 0.5 <= numericRating;
+          const isHalf = !isFull && starNumber - 0.5 <= numericRating;
 
           return (
-            <span key={starNumber} className={`${styles.star} ${
-                isFull
-                  ? styles.full
-                  : isHalf
-                    ? styles.half
-                    : styles.empty
+            <span
+              key={starNumber}
+              className={`${styles.star} ${
+                isFull ? styles.full : isHalf ? styles.half : styles.empty
               }`}
               aria-hidden="true"
             >

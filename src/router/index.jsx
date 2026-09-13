@@ -10,6 +10,7 @@ import RegisterPage from "../pages/RegistrerPage/RegistrerPage.jsx"
 import CartPage from "../pages/CartPage/CartPage.jsx"
 import WishlistPage from "../pages/WishlistPage/WishlistPage.jsx"
 import ProfilePage from "../pages/ProfilePage/ProfilePage.jsx"
+import ContactPage from "../pages/ContactPage/ContactPage.jsx"
 import CheckoutPage from "../pages/CheckoutSuccesPage/CheckoutPage.jsx"
 import AdminPage from "../pages/AdminPage/AdminPage.jsx"
 import AdminProductsPage from "../pages/AdminProductsPage/AdminProductsPage.jsx"
@@ -20,6 +21,7 @@ const router = createBrowserRouter([{ path: "/", element: <Layout />, errorEleme
   { index: true, element: <HomePage /> },
   { path: "products", element: <ProductsPage /> },
   { path: "products/:productId", element: <ProductDetailPage /> },
+  { path: "contact", element: <ContactPage /> },
   { path: "login", element: <LoginPage /> },
   { path: "register", element: <RegisterPage /> },
   { element: <PrivateRoute />, children: [

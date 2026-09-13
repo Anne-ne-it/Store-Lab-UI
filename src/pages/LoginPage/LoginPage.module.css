@@ -8,39 +8,10 @@
 
 .container {
   width: 100%;
-  max-width: 420px;
-}
+  max-width: 480px;
+  padding: 40px;
+  box-sizing: border-box;
 
-.container h1 {
-  margin-bottom: 30px;
-  font-family: var(--font-titles);
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.button {
-  min-height: 44px;
-  padding: 11px 22px;
-
-  border: none;
-  border-radius: var(--radius-full);
-
-  cursor: pointer;
-
-  font-family: var(--font-titles);
-  font-size: 11px;
-  font-weight: var(--weight-bold);
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-}
-
-/* StoreLab visual system: aligned with src/styles/variables.css */
-
-.container {
   background: var(--glass-bg-strong);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -49,7 +20,19 @@
   border-radius: var(--radius-xl);
 }
 
+.container h1 {
+  margin: 0 0 30px;
+  font-family: var(--font-titles);
+}
+
 .form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 28px;
+  box-sizing: border-box;
+
   background: var(--glass-bg-strong);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -59,12 +42,25 @@
 }
 
 .button {
+  min-height: 44px;
+  padding: 11px 22px;
+  border: none;
   border-radius: var(--radius-full);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  font-family: var(--font-titles);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
-

@@ -1,12 +1,20 @@
 import { useState } from "react"
-import { NavLink } from "react-router-dom"
-import { User, ShoppingBag, Menu, X, ChevronDown } from "lucide-react"
+import { NavLink, useLocation } from "react-router-dom"
+import { User, ShoppingBag, Menu, X, ChevronDown, Mail } from "lucide-react"
 import { useSelector } from "react-redux"
 import { selectIsAdmin } from "../../store/authSlice.js"
 import styles from "./Header.module.css"
 
+const categories = [
+  ["SURF", "surf"],
+  ["SKATE", "skate"],
+  ["NEOPRENOS", "neoprenos"],
+  ["ACCESORIOS", "accesorios"],
+]
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
   const token = useSelector((state) => state.auth.token)
   const isAdmin = useSelector(selectIsAdmin)
   const cartItems = useSelector((state) => state.cart.items)
@@ -16,6 +24,7 @@ function Header() {
     0
   )
 
+  const activeCategory = new URLSearchParams(location.search).get("category")?.trim().toLowerCase()
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
@@ -28,22 +37,21 @@ function Header() {
       </NavLink>
 
       <nav className={`${styles.navHeader} ${isMenuOpen ? styles.navActive : ""}`}>
-        <NavLink to="/" end className={({ isActive }) => (isActive ? styles.activeLink : styles.link)} onClick={closeMenu}>
-          INICIO
-        </NavLink>
+        {categories.map(([label, category]) => {
+          const isCategoryActive = location.pathname === "/products" && activeCategory === category
 
-        {[
-          ["SURF", "Surf"],
-          ["SKATE", "Skate"],
-          ["NEOPRENOS", "Neoprenos"],
-          ["ACCESORIOS", "Accesorios"],
-        ].map(([label, category]) => (
-          <div className={styles.dropdown} key={category}>
-            <NavLink to={`/products?category=${encodeURIComponent(category)}`} className={({ isActive }) => (isActive ? styles.activeLink : styles.link)} onClick={closeMenu}>
-              {label} <ChevronDown className={styles.chevronIcon} />
-            </NavLink>
-          </div>
-        ))}
+          return (
+            <div className={styles.dropdown} key={category}>
+              <NavLink
+                to={`/products?category=${encodeURIComponent(category)}`}
+                className={isCategoryActive ? styles.activeLink : styles.link}
+                onClick={closeMenu}
+              >
+                {label} <ChevronDown className={styles.chevronIcon} />
+              </NavLink>
+            </div>
+          )
+        })}
 
         {isAdmin && (
           <NavLink to="/admin" className={({ isActive }) => (isActive ? styles.activeLink : styles.link)} onClick={closeMenu}>
@@ -53,6 +61,9 @@ function Header() {
       </nav>
 
       <div className={styles.actions}>
+        <NavLink to="/contact" className={styles.iconBtn} aria-label="Contacto">
+          <Mail className={styles.actionIcon} />
+        </NavLink>
         <NavLink to={token ? "/profile" : "/login"} className={styles.iconBtn} aria-label="Cuenta">
           <User className={styles.actionIcon} />
         </NavLink>

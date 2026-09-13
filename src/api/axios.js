@@ -4,17 +4,24 @@ import { logout } from "../store/authSlice.js" //Importa la acción de Redux par
 
 const api = axios.create({ //Crea y configura una instancia personalizada de Axios que se reutilizará en toda la aplicación
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000", //Define la URL base de la API sacándola del archivo de variables de entorno, o usa localhost por defecto
+  withCredentials: true,
   headers: { //Define los encabezados por defecto que se enviarán en cada petición
     "Content-Type": "application/json",
   },
 })
 
+const isRealAuthToken = (value) => Boolean(value) && value !== "cookie-authenticated" && value !== "null" && value !== "undefined"
+
 api.interceptors.request.use( //Interceptor de peticiones: se ejecuta de manera automática JUSTO ANTES de que cualquier petición salga al servidor
   (config) => {
+    config.withCredentials = true
+
     const token = localStorage.getItem("token") //Busca si existe un token de autenticación guardado en el almacenamiento local del navegador
 
-    if (token) { //Si el token existe, lo adjunta en la cabecera Authorization como un token Bearer
+    if (isRealAuthToken(token)) { //Si el token existe y es un JWT real, se adjunta en la cabecera Authorization como un token Bearer
       config.headers.Authorization = `Bearer ${token}`
+    } else {
+      delete config.headers.Authorization
     }
 
     return config //Retorna la configuración modificada para que la petición pueda enviarse

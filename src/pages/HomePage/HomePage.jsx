@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../hooks/UseProducts";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
@@ -6,19 +6,11 @@ import styles from "./HomePage.module.css";
 
 function HomePage() {
     const { products, loading, error } = useProducts();
-    const [search, setSearch] = useState("");
+    const productIds = useSelector((state) => state.wishlist.productIds);
 
-    const visibleProducts = !search.trim()
-        ? []
-        : products.filter((product) => {
-            const searchText = search.toLowerCase().trim();
-
-            return (
-                product.name?.toLowerCase().includes(searchText) ||
-                product.title?.toLowerCase().includes(searchText) ||
-                product.category?.toLowerCase().includes(searchText)
-            );
-        });
+    const favoriteProducts = products.filter((product) =>
+        productIds.includes(product.id)
+    );
 
     return (
         <main className={styles.homePage}>
@@ -68,27 +60,21 @@ function HomePage() {
 
             </section>
 
-            {/* BUSCADOR Y PRODUCTOS */}
-            <section>
-                <div className={styles.searchBox}>
+            <section className={styles.favoritesSection}>
+                <div className={styles.sectionHeader}>
+                    <div>
+                        <p className={styles.sectionEyebrow}>NO TE PIERDAS NADA</p>
+                        <h2>Favoritos</h2>
+                    </div>
 
-                    <label htmlFor="search">
-                        Buscar productos
-                    </label>
-
-                    <input
-                        id="search"
-                        type="text"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Busca por nombre o categoría..."
-                    />
-
+                    <Link to="/wishlist" className={styles.viewAll}>
+                        Ver todos
+                    </Link>
                 </div>
 
                 {loading && (
                     <p className={styles.status}>
-                        Cargando productos...
+                        Cargando favoritos...
                     </p>
                 )}
 
@@ -98,20 +84,14 @@ function HomePage() {
                     </p>
                 )}
 
-                {!loading && !error && (
-                    <>
-                        {!search.trim() ? (
-                            <p className={styles.status}>
-                                Escribe en el buscador para ver los productos.
-                            </p>
-                        ) : visibleProducts.length === 0 ? (
-                            <p className={styles.status}>
-                                No se encontraron productos que coincidan con "{search}".
-                            </p>
-                        ) : (
-                            <ProductGrid products={visibleProducts} />
-                        )}
-                    </>
+                {!loading && !error && favoriteProducts.length === 0 && (
+                    <p className={styles.favoriteEmpty}>
+                        Aún no tienes productos favoritos. Guarda alguno desde el catálogo.
+                    </p>
+                )}
+
+                {!loading && !error && favoriteProducts.length > 0 && (
+                    <ProductGrid products={favoriteProducts.slice(0, 4)} />
                 )}
             </section>
 

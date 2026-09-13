@@ -19,6 +19,7 @@
 
 /*STAR*/
 .star {
+    display: inline-block;
     font-size: 16px;
     line-height: 1;
     transition:
@@ -74,12 +75,4 @@
     }
 }
 
-.empty {
-  background: var(--glass-bg-strong);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-glass);
-  border-radius: var(--radius-lg);
-}
 
