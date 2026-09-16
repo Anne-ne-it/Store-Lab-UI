@@ -1,35 +1,23 @@
 /* INDEX.CSS — Estilos principales para la aplicación */
 
 
-/* =========================
-   FONT FAMILIES
-========================= */
-
+/*FONT FAMILIES*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@700;900&family=Space+Mono:wght@700&display=swap');
 
 
-/* =========================
-   ROOT Y VARIABLES
-========================= */
-
+/*ROOT Y VARIABLES*/
 @import url('./variables.css');
 
 
-/* =========================
-   CSS RESET
-========================= */
-
-*, 
-*::before, 
-*::after {
+/*CSS RESET*/
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 
-html,
-body {
+html, body {
   margin: 0;
   width: 100%;
   min-height: 100%;
@@ -63,20 +51,14 @@ body {
 }
 
 
-/* =========================
-   SELECCIÓN DE TEXTO
-========================= */
-
+/*SELECCIÓN DE TEXTO*/
 ::selection {
   background: var(--color-primary);
   color: var(--color-text-light);
 }
 
 
-/* =========================
-   SCROLLBAR
-========================= */
-
+/*SCROLLBAR*/
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -95,16 +77,8 @@ body {
 }
 
 
-/* =========================
-   TÍTULOS
-========================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/*TÍTULOS*/
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-titles);
   font-weight: var(--weight-black);
   text-transform: uppercase;
@@ -112,10 +86,7 @@ h6 {
 }
 
 
-/* =========================
-   ENLACES
-========================= */
-
+/*ENLACES*/
 a {
   color: inherit;
   text-decoration: none;
@@ -125,10 +96,7 @@ a {
 }
 
 
-/* =========================
-   BOTONES
-========================= */
-
+/*BOTONES*/
 button {
   font-family: var(--font-titles);
   cursor: pointer;
@@ -137,10 +105,7 @@ button {
 }
 
 
-/* =========================
-   IMÁGENES
-========================= */
-
+/*IMÁGENES*/
 img {
   max-width: 100%;
   display: block;
@@ -148,26 +113,14 @@ img {
 }
 
 
-/* =========================
-   ELEMENTOS DE FORMULARIO
-========================= */
-
-input,
-textarea,
-select {
+/*ELEMENTOS DE FORMULARIO*/
+input, textarea, select {
   font-family: inherit;
 }
 
 
-/* =========================
-   ACCESIBILIDAD
-========================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
+/*ACCESIBILIDAD*/
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
   outline: 2px solid var(--color-secondary);
   outline-offset: 3px;
 }

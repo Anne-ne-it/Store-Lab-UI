@@ -9,7 +9,6 @@
 .container {
     width: min(100%, 1180px);
     margin: 0 auto;
-    /* Espaciado interno para separar el contenido del borde del contenedor */
     padding: var(--spacing-xl);
 }
 
@@ -47,20 +46,15 @@
 .content {
     display: grid;
     grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
-    gap: var(--spacing-xl); /* Separación aumentada entre columna izquierda y derecha */
+    gap: var(--spacing-xl);
     align-items: start;
 }
 
-/* =========================
-   TARJETAS Y SOBRES (BOXES)
-   ========================= */
-
+/*TARJETAS Y SOBRES*/
 .items {
     display: grid;
-    /* Aumentado a spacing-md o spacing-lg para separar más cada elemento interno */
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    
     background: var(--glass-bg-strong);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
@@ -69,11 +63,9 @@
     -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
-.empty,
-.status {
+.empty, .status {
     padding: var(--spacing-xl) var(--spacing-lg);
     text-align: center;
-    
     background: var(--glass-bg-strong);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
@@ -105,10 +97,7 @@
     box-shadow: var(--shadow-md);
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
-
+/*RESPONSIVE*/
 @media (max-width: 760px) {
     .page {
         padding: var(--spacing-lg) var(--spacing-md);

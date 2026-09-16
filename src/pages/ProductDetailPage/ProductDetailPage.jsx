@@ -97,9 +97,9 @@ function ProductDetailPage() { // Define la página que muestra toda la informac
   }
 
   return (
-    <main className={styles.ProductDetailPage}> // Contenedor principal del detalle del producto
-      <section className={styles.product}> // Sección con imagen, información y acciones del producto
-        <div className={styles.imageContainer}> // Bloque de la imagen principal
+    <main className={styles.ProductDetailPage}> 
+      <section className={styles.product}> 
+        <div className={styles.imageContainer}> 
           {product.image ? (
             <img
               className={styles.productImage}
@@ -109,7 +109,7 @@ function ProductDetailPage() { // Define la página que muestra toda la informac
           ) : null}
         </div>
 
-        <div className={styles.productInfo}> // Panel con nombre, categoría, precio, valoración y descripción
+        <div className={styles.productInfo}> 
           <span className={styles.productCategory}>
             {product.category}
           </span>
@@ -131,7 +131,7 @@ function ProductDetailPage() { // Define la página que muestra toda la informac
             {Number(product.price).toFixed(2)} €
           </p>
 
-          <div className={styles.actions}> // Botones de compra y favoritos
+          <div className={styles.actions}>
             <button
               type="button"
               className={styles.buyButton}
@@ -164,7 +164,7 @@ function ProductDetailPage() { // Define la página que muestra toda la informac
         </div>
       </section>
 
-      <section className={styles.reviewsSection}> // Sección de reseñas del producto
+      <section className={styles.reviewsSection}>
         <ReviewList
           key={reviewsVersion}
           productId={product.id}

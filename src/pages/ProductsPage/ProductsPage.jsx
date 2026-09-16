@@ -48,8 +48,8 @@ function ProductsPage() { // Define la vista que muestra todos los productos fil
   }
 
   return (
-    <main className={styles.page}> // Contenedor principal de la página de catálogo
-      <header className={styles.header}> // Encabezado con título y marca del catálogo
+    <main className={styles.page}>
+      <header className={styles.header}> 
         <p className={styles.eyebrow}>STORE LAB · SURF &amp; SKATE</p>
 
         <h1>
@@ -58,7 +58,7 @@ function ProductsPage() { // Define la vista que muestra todos los productos fil
 
       </header>
 
-      <div className={styles.searchBox}> // Contenedor del buscador de productos
+      <div className={styles.searchBox}>
         <label htmlFor="catalog-search">Buscar productos</label>
         <input
           id="catalog-search"

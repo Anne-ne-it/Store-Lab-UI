@@ -27,32 +27,32 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
     );
 
     return (
-        <main className={styles.homePage}> // Contenedor principal de la home
+        <main className={styles.homePage}> 
 
-            <section className={styles.hero}> // Sección inicial con imagen de fondo y texto promocional
+            <section className={styles.hero}> 
 
-                <div className={styles.heroOverlay}></div> // Capa oscura para mejorar la legibilidad sobre la imagen de fondo
+                <div className={styles.heroOverlay}></div> 
 
-                <div className={styles.heroContent}> // Bloque de texto y botones del hero
+                <div className={styles.heroContent}> 
 
-                    <p className={styles.eyebrow}> // Texto pequeño con la identidad de marca
+                    <p className={styles.eyebrow}> 
                         SURF · SKATE · CULTURE
                     </p>
 
-                    <h1 className={styles.title}> // Título principal de la marca y estilo de vida
+                    <h1 className={styles.title}> 
                         SURF, SKATE
                         <br />
                         Y LIBERTAD
                     </h1>
 
-                    <div className={styles.divider}></div> // Línea decorativa entre slogan y texto
+                    <div className={styles.divider}></div> 
 
-                    <p className={styles.copy}> // Texto descriptivo de la marca
+                    <p className={styles.copy}> 
                         Equipamiento para quienes viven
                         el mar y la calle.
                     </p>
 
-                    <div className={styles.heroButtons}> // Contenedor con los botones de acción del hero
+                    <div className={styles.heroButtons}> 
                         {/* Redirige al catálogo completo */}
                         <Link
                             to="/products"
@@ -74,8 +74,8 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
 
             </section>
 
-            <section className={styles.favoritesSection}> // Sección de productos más recientes
-                <div className={styles.sectionHeader}> // Encabezado con título y botón de ver todos
+            <section className={styles.favoritesSection}> 
+                <div className={styles.sectionHeader}> 
                     <div>
                         <p className={styles.sectionEyebrow}>NO TE PIERDAS NADA</p>
                         <h2>Novedades</h2>
@@ -113,14 +113,14 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
                 )}
             </section>
 
-            <section className={styles.favoritesSection}> // Sección de favoritos del usuario
-                <div className={styles.sectionHeader}> // Encabezado de la lista de favoritos
+            <section className={styles.favoritesSection}> 
+                <div className={styles.sectionHeader}> 
                     <div>
                         <p className={styles.sectionEyebrow}>CURADO PARA TI</p>
                         <h2>Favoritos</h2>
                     </div>
 
-                    <Link to="/wishlist" className={styles.viewAll}> // Enlace para ver la wishlist completa
+                    <Link to="/wishlist" className={styles.viewAll}> 
                         Ver todos
                     </Link>
                 </div>
@@ -136,10 +136,10 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
                 )}
             </section>
 
-            {/* CATEGORÍAS */} // Sección de categorías rápidas para navegar por tipo de producto
-            <section className={styles.categories}> // Contenedor con enlaces a cada categoría principal
+            {/* CATEGORÍAS */}
+            <section className={styles.categories}> 
 
-                <Link to="/products?category=surf" className={styles.category}> // Enlace a la colección de surf
+                <Link to="/products?category=surf" className={styles.category}> 
                     <span className={styles.categoryIcon}>◉</span>
 
                     <div>
@@ -148,7 +148,7 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
                     </div>
                 </Link>
 
-                <Link to="/products?category=skate" className={styles.category}> // Enlace a la colección de skate
+                <Link to="/products?category=skate" className={styles.category}> 
                     <span className={styles.categoryIcon}>◉</span>
 
                     <div>
@@ -157,7 +157,7 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
                     </div>
                 </Link>
 
-                <Link to="/products?category=neoprenos" className={styles.category}> // Enlace a la colección de neoprenos
+                <Link to="/products?category=neoprenos" className={styles.category}>
                     <span className={styles.categoryIcon}>◉</span>
 
                     <div>
@@ -166,7 +166,7 @@ function HomePage() { // Define la página de inicio con el hero, novedades y fa
                     </div>
                 </Link>
 
-                <Link to="/products?category=accesorios" className={styles.category}> // Enlace a la colección de accesorios
+                <Link to="/products?category=accesorios" className={styles.category}> 
                     <span className={styles.categoryIcon}>◉</span>
 
                     <div>

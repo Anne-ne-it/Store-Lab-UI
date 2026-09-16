@@ -31,10 +31,7 @@
   font-size: 1.05rem;
 }
 
-.tableCard,
-.empty,
-.status,
-.error {
+.tableCard, .empty, .status, .error {
   background: var(--glass-bg-strong);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -47,8 +44,7 @@
   overflow: hidden;
 }
 
-.tableHeader,
-.row {
+.tableHeader, .row {
   display: grid;
   grid-template-columns: minmax(220px, 1.5fr) minmax(220px, 1.5fr) 0.8fr minmax(160px, 1fr);
   align-items: center;
@@ -110,8 +106,7 @@
   font-size: 0.7rem;
 }
 
-.email,
-.role {
+.email, .role {
   color: #111111;
 }
 
@@ -133,14 +128,12 @@
   flex-wrap: wrap;
 }
 
-.editFields,
-.roleField {
+.editFields, .roleField {
   display: flex;
   align-items: center;
 }
 
-.editFields input,
-.roleField select {
+.editFields input, .roleField select {
   width: 100%;
   min-height: 42px;
   padding: var(--spacing-sm) var(--spacing-md);
@@ -151,10 +144,7 @@
   font: inherit;
 }
 
-.editButton,
-.saveButton,
-.cancelButton,
-.deleteButton {
+.editButton, .saveButton, .cancelButton, .deleteButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -194,10 +184,7 @@
   border: 1px solid rgba(229, 111, 81, 0.28);
 }
 
-.editButton:hover,
-.saveButton:hover,
-.cancelButton:hover,
-.deleteButton:hover {
+.editButton:hover, .saveButton:hover, .cancelButton:hover, .deleteButton:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
@@ -218,17 +205,12 @@
   background: rgba(229, 111, 81, 0.18);
 }
 
-.editButton:disabled,
-.saveButton:disabled,
-.cancelButton:disabled,
-.deleteButton:disabled {
+.editButton:disabled, .saveButton:disabled, .cancelButton:disabled, .deleteButton:disabled {
   cursor: wait;
   opacity: 0.6;
 }
 
-.empty,
-.status,
-.error {
+.empty, .status, .error {
   padding: var(--spacing-xl);
   text-align: center;
 }
@@ -238,8 +220,7 @@
   color: #ffffff;
 }
 
-.empty p,
-.status {
+.empty p, .status {
   color: rgba(255, 255, 255, 0.8);
 }
 

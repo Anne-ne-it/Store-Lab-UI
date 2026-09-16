@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-
 import { toggleWishlist } from "../../store/wishlistSlice.js"
 import { useProducts } from "../../hooks/UseProducts.js"
 import styles from "./WishlistPage.module.css"
