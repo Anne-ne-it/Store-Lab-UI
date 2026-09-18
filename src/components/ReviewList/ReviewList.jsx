@@ -1,4 +1,4 @@
-import { useReviews } from "../../hooks/useReviews.js"; //Importa el hook para obtener las reseñas de un producto concreto
+import { useReviews } from "../../hooks/UseReviews.js"; //Importa el hook para obtener las reseñas de un producto concreto
 import StarRating from "../StarRating/StarRating"; //Importa el componente para mostrar la valoración con estrellas
 import styles from "./ReviewList.module.css"; //Importa los estilos del listado de reseñas
 
